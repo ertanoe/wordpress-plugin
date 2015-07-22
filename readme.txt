@@ -17,6 +17,7 @@ Automatic webinar registration. It integrates the following two elements into yo
 
 * a list upcoming webinars scheduled in your weclapp account under CRM -> campaigns (campaign type webinar)
 * a formular enabling visitors of your website to participate in one or more webinars with one single registration
+(this feature can be deactivated under Settings -> weclapp)
 
 If a user is not in your contact, lead, or customer list, he will be added to your contacts (contact type can be set in the Plugin Settings 
 under "Unknown persons place as").
