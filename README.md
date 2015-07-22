@@ -2,7 +2,7 @@
 
 This plugin integrates weclapp functionality into WordPress CMS
 
-<h5>Campagin management</h5>
+<h5>Campaign management</h5>
 Adds the possibility to display campaigns and allow automatic webinar registration. It integrates the following two elements into your webpage:
 
 
