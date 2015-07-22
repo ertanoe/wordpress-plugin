@@ -36,10 +36,6 @@ To use this feature, just place the Shortcode [weclappWebinar] into a chosen pos
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
-
-An answer to that question.
-
 
 == Screenshots ==
 
