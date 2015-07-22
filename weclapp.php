@@ -45,6 +45,7 @@ function create_admin_page()
 	weclapp_get_option("contact_placement");
 	weclapp_get_option("success_message");
 	weclapp_get_option("nowebinars");
+	
 			// This prints out all hidden setting fields
 	?> 
 	<div class="wrap">
@@ -70,6 +71,7 @@ function page_init()
 		'api_token', // Option name
 		'sanitize_input'  // Sanitize
 	);
+	
 	register_setting(
 		'weclapp_options', // Option group
 		'domain_name', // Option name
@@ -84,6 +86,12 @@ function page_init()
 	
 	register_setting(
 		'weclapp_options', // Option group
+		'display_form', // Option name
+		'sanitize_input'  // Sanitize
+	);
+	
+	register_setting(
+		'weclapp_options', // Option group
 		'success_message', // Option name
 		'sanitize_input'  // Sanitize
 	);
@@ -94,23 +102,24 @@ function page_init()
 		'sanitize_input'  // Sanitize
 	);
 	
+	
 	add_settings_section(
 		'neccessary_section', // ID
-		__('Notwendige Einstellungen'), // Title
+		__('Notwendige Einstellungen','weclapp'), // Title
 		'print_neccessary_section_info' , // Callback
 		'weclapp-settings' // Page
 	);  
 	
 	add_settings_section(
 		'non_neccessary_section', // ID
-		__('Nicht notwendige Einstellungen'), // Title
+		__('Nicht notwendige Einstellungen','weclapp'), // Title
 		'print_non_neccessary_section_info', // Callback
 		'weclapp-settings' // Page
 	);  
 
 	add_settings_field(
 		'api_token', // ID
-		'API Token', // Title 
+		__('API Token','weclapp'), // Title 
 		'api_token_callback', // Callback
 		'weclapp-settings', // Page
 		'neccessary_section' // Section           
@@ -118,28 +127,35 @@ function page_init()
 
 	add_settings_field(
 		'domain_name', // ID
-		'Domain Name', // Title 
+		__('Domain Name','weclapp'), // Title 
 		'domain_name_callback' , // Callback
 		'weclapp-settings', // Page
 		'neccessary_section' // Section           
 	);      
 	add_settings_field(
 		'contact_placement', // ID
-		__('Unbekannte Personen platzieren als'), // Title 
+		__('Neue Benutzer anlegen als','weclapp'), // Title 
 		'contact_placement_callback', // Callback
 		'weclapp-settings', // Page
 		'neccessary_section' // Section           
 	);  
 	add_settings_field(
+		'display_form', // ID
+		__('Formular anzeigen','weclapp'), // Title 
+		'display_form_callback', // Callback
+		'weclapp-settings', // Page
+		'neccessary_section' // Section           
+	);  
+	add_settings_field(
 		'success_message', // ID
-		__('Benutzerdefinierte Erfolgsmeldung'), // Title 
+		__('Benutzerdefinierte Erfolgsmeldung','weclapp'), // Title 
 		'success_message_callback', // Callback
 		'weclapp-settings', // Page
 		'non_neccessary_section' // Section           
 	); 
 	add_settings_field(
 		'nowebinars_message', // ID
-		__('Benutzerdefinierte Mitteilung, falls kein Webinar ansteht'), // Title 
+		__('Benutzerdefinierte Mitteilung, falls kein Webinar ansteht','weclapp'), // Title 
 		'nowebinars_callback', // Callback
 		'weclapp-settings', // Page
 		'non_neccessary_section' // Section           
@@ -160,12 +176,12 @@ function sanitize_input( $input ) {
 **/
 function print_neccessary_section_info()
 {
-	print __('Bitte geben Sie Ihren weclapp API Token sowie Ihren Domain-Namen ein', 'weclapp');
+	_e('Bitte geben Sie Ihren weclapp API Token sowie Ihren Domain-Namen ein.', 'weclapp');
 }
 
 function print_non_neccessary_section_info()
 {
-	print __('Hier können Sie bei Bedarf eigene Meldungen setzen.', 'weclapp');
+	_e('Hier können Sie bei Bedarf eigene Meldungen setzen.', 'weclapp');
 }
 
 /** 
@@ -199,6 +215,11 @@ function contact_placement_callback()
 			<input type="radio" id="customer" name="contact_placement" value="customer" ' . ( ( 'customer' == weclapp_get_option( 'contact_placement' )) ? 'checked' : '' ). '><label for="customer">  Customer</label> 
 		</fieldset>';
 } 
+
+function display_form_callback()
+{
+	echo "<input type='checkbox' name='display_form' value='1'" . checked( 1, get_option( 'display_form', '1' ), false ) . ">";
+}
 /** 
 * add settings link on plugin page
 **/
@@ -248,7 +269,7 @@ function weclapp_api()
 			$content .= '<div class=webinar-box>';
 				$content .= '<div class="webinar-head" >';
 
-					$content .= '<div class="webinar-checkbox"><input type="hidden" name="webinare" data-weclapp-campaign-id="' . $val['id'] . '" /></div>';
+					$content .= '<div class="webinar-checkbox"'. ( ( 1 == get_option( 'display_form' )) ? '' : 'style="display: none"' ) . '><input type="hidden" name="webinare" data-weclapp-campaign-id="' . $val['id'] . '" /></div>';
 				
 					$content .= '<div class="webinar-headline">';
 						$content .= '<h3 style="margin: 0px !important;padding: 0px !important;">' . $val['campaignName'] . '</h3>';
@@ -264,25 +285,27 @@ function weclapp_api()
 		}
 		$content .= '</div>';
 		//input formular, submit buttons calls registerUser in weclapp.js (AJAX-call)
-		$content .= '
-			<div id="name-group" class="form-group">
-				<label for="weclapp-name">' . __("Name", "weclapp") . '</label> 
-				<input id="weclapp-name" name="wc_name" type="text" value="Hans Mueller" class="form-control" />
-			</div>
-			<div id="email-group" class="form-group">
-				<label for="weclapp-email"> E-Mail </label> 
-				<input id="weclapp-email" name="wc_email" type="text" value="hans@aol.com" class="form-control" />
-			</div>
-			<div id="phone-group" class="form-group">
-				<label for="weclapp-phone">' . __("Telefonnummer", "weclapp") . '</label> 
-				<input id="weclapp-phone" name="wc_phone" type="text" value="1234" class="form-control" />
-			</div>
-			<p id = "demo"></p>
-			<input type="submit" name="submit" id="submitbutton" value="'. __("Anmelden","weclapp") . '" onclick="registerUser()" />';
-		$content .='<div style="padding-top: 20px;padding-bottom: 20px;">';
-		$content .='<div id="loader" style="display: none;"> <img src="' . plugin_dir_url(  __FILE__  ) . 'assets/icons/ajax-loader.gif"> </div>';
-		$content .='<div id="errorbox" class="weclapp-error-message" style="display: none;"><span></span></div>';
-		$content .='<div id="successbox" class="weclapp-success-message" style="display: none;"><span></span></div>';
+		if ( '1' == get_option( 'display_form', '1' )) {
+			$content .= '
+				<div id="name-group" class="form-group">
+					<label for="weclapp-name">' . __("Name", "weclapp") . '</label> 
+					<input id="weclapp-name" name="wc_name" type="text" value="Hans Mueller" class="form-control" />
+				</div>
+				<div id="email-group" class="form-group">
+					<label for="weclapp-email"> E-Mail </label> 
+					<input id="weclapp-email" name="wc_email" type="text" value="hans@aol.com" class="form-control" />
+				</div>
+				<div id="phone-group" class="form-group">
+					<label for="weclapp-phone">' . __("Telefonnummer", "weclapp") . '</label> 
+					<input id="weclapp-phone" name="wc_phone" type="text" value="1234" class="form-control" />
+				</div>
+				<p id = "demo"></p>
+				<input type="submit" name="submit" id="submitbutton" value="'. __("Anmelden","weclapp") . '" onclick="registerUser()" />';
+			$content .='<div style="padding-top: 20px;padding-bottom: 20px;">';
+			$content .='<div id="loader" style="display: none;"> <img src="' . plugin_dir_url(  __FILE__  ) . 'assets/icons/ajax-loader.gif"> </div>';
+			$content .='<div id="errorbox" class="weclapp-error-message" style="display: none;"><span></span></div>';
+			$content .='<div id="successbox" class="weclapp-success-message" style="display: none;"><span></span></div>';
+		}	
 	}
 	return $content;
 }

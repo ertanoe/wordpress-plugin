@@ -25,7 +25,6 @@ Participants trying to register repeatedly will be informed about their already 
 To use this feature, just place the Shortcode [weclappWebinar] into a chosen post.
 
 
-
 == Installation ==
 
 1. Upload plugin under Plugins -> Add new.
@@ -36,7 +35,10 @@ To use this feature, just place the Shortcode [weclappWebinar] into a chosen pos
 
 == Screenshots ==
 
+For an impression visit https://www.weclapp.com/de/webinare/
 
 == Changelog ==
 
 1.0 Initial version with campaign support only
+
+== Upgrade Notice ==
