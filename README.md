@@ -1,14 +1,6 @@
 # wordpress-plugin
 weclapp integration for wordpress
 
-Contributors: Lukas Kröger
-Tags: webinar, weclapp, campaign, Kampagne 
-Requires at least: 4.0
-Tested up to: 4.2.2
-Stable tag: 1.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-
 This plugin integrates weclapp functionality into wordpress CMS
 
 == Description ==
@@ -25,7 +17,8 @@ under "Unknown persons place as").
 Participants trying to register repeatedly will be informed about their already existing participation.
 To use this feature, just place the Shortcode [weclappWebinar] into a chosen post.
 
-
+Here you can see an example, how this looks like:
+https://www.weclapp.com/de/webinare/
 
 == Installation ==
 
@@ -35,16 +28,7 @@ To use this feature, just place the Shortcode [weclappWebinar] into a chosen pos
 3.1 Enter your API Token
 3.2 Enter your domain name e.g. your_domain_name.weclapp.com (without "https://")
 
-== Frequently Asked Questions ==
-
-
-== Screenshots ==
-
-
-
 == Changelog ==
 
 1.0 Initial version with campaign support only
-
-== Arbitrary section ==
 
