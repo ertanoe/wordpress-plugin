@@ -2,8 +2,6 @@
 
 This plugin integrates weclapp functionality into WordPress CMS
 
-<h4>Description</h4>
-
 <h5>Campagin management</h5>
 Adds the possibility to disply campaings and allow automatic webinar registration. It integrates the following two elements into your webpage:
 
@@ -18,6 +16,8 @@ To use this feature, just place the Shortcode [weclappWebinar] into a chosen pos
 
 Here is a sample how the usage of the plugin looks like:
 https://www.weclapp.com/de/webinare/
+
+<h5>More functionality will be added in the future</h5>
 
 <h4>Installation</h4>
 <ul>
