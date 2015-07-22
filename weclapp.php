@@ -2,11 +2,11 @@
 /*
 Plugin Name: weclapp 
 Plugin URI: 
-Version: Current Version
+Version: 1.0
 Author: <a href="http://www.weclapp.com"> weclapp GmbH </a>
 Text Domain: weclapp
 Domain Path: /languages
-Description: This plugin allows visitors of your webpage to register into your webinars organized with Weclapp
+Description: This plugin integrates weclapp functionality into wordpress CMS
 */
 
 //weclapp REST API integration
