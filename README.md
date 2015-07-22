@@ -3,7 +3,7 @@ weclapp integration for wordpress
 
 This plugin integrates weclapp functionality into wordpress CMS
 
-== Description ==
+<h4>Description</h4>
 
 Add Campagin registration to support
 Automatic webinar registration. It integrates the following two elements into your webpage:
@@ -17,18 +17,19 @@ under "Unknown persons place as").
 Participants trying to register repeatedly will be informed about their already existing participation.
 To use this feature, just place the Shortcode [weclappWebinar] into a chosen post.
 
-Here you can see an example, how this looks like:
+Here you can see an example how this looks like:
 https://www.weclapp.com/de/webinare/
 
-== Installation ==
+<h4>Installation</h4>
 
-1. Upload plugin under Plugins -> Add new.
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Setup your plugin (can be found in weclapp under account name in the top right corner -> Settings)
-3.1 Enter your API Token
-3.2 Enter your domain name e.g. your_domain_name.weclapp.com (without "https://")
+1. <a href="https://github.com/ertanoe/wordpress-plugin/archive/master.zip">Download Plugin</a>
+2. Upload plugin under Plugins -> Add new.
+3. Activate the plugin through the 'Plugins' menu in WordPress
+4. Setup your plugin (can be found in weclapp under account name in the top right corner -> Settings)
+4.1 Enter your API Token
+4.2 Enter your domain name e.g. your_domain_name.weclapp.com (without "https://")
 
-== Changelog ==
+<h4>Changelog</h4>
 
-1.0 Initial version with campaign support only
+1.0 Initial version with campaign support
 
