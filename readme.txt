@@ -1,4 +1,4 @@
-=== Plugin Name ===
+﻿=== Plugin Name ===
 Contributors: Lukas Kröger
 Tags: webinar, weclapp, campaign, Kampagne 
 Requires at least: 4.0
@@ -39,9 +39,3 @@ To use this feature, just place the Shortcode [weclappWebinar] into a chosen pos
 == Changelog ==
 
 1.0 Initial version with campaign support only
-
-== Arbitrary section ==
-
-
-== A brief Markdown Example ==
-
