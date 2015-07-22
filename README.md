@@ -1,6 +1,7 @@
 # wordpress-plugin
 weclapp integration for wordpress
 
+Contributors: Lukas Kröger
 Tags: webinar, weclapp, campaign, Kampagne 
 Requires at least: 4.0
 Tested up to: 4.2.2
@@ -47,5 +48,3 @@ To use this feature, just place the Shortcode [weclappWebinar] into a chosen pos
 
 == Arbitrary section ==
 
-
-== A brief Markdown Example ==
