@@ -1,0 +1,162 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: weclapp\n"
+"POT-Creation-Date: 2015-07-21 13:20+0200\n"
+"PO-Revision-Date: 2015-07-21 13:42+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: includes\n"
+
+#: includes/wc-send.php:17
+msgid "Bitte geben Sie Ihren Namen ein!"
+msgstr "Please enter your name!"
+
+#: includes/wc-send.php:21
+msgid "Bitte geben Sie Ihren Vor -und Nachnamen ein!"
+msgstr "Please enter your first and last name!"
+
+#: includes/wc-send.php:26 wcsend.php:24
+msgid "Bitte geben Sie Ihre Email-Adresse ein!"
+msgstr "Please enter your email adress!"
+
+#: includes/wc-send.php:29 wcsend.php:27
+msgid "Bitte geben Sie eine gültige Email-Adresse ein!"
+msgstr "Please enter a valid email address!"
+
+#: includes/wc-send.php:34 wcsend.php:32
+msgid "Bitte geben Sie Ihre Telefonnummer ein!"
+msgstr "Please enter your phone number!"
+
+#: includes/wc-send.php:38 wcsend.php:35
+msgid "Bitte geben Sie eine gültige Telefonnummer ein!"
+msgstr "Please enter a valid phone number!"
+
+#: includes/wc-send.php:45
+msgid "Bitte wählen Sie ein Webinar"
+msgstr "Please select a webinar"
+
+#: includes/wc-send.php:61 wcsend.php:59
+msgid "Sie sind unter Ihrer E-Mail-Adresse für dieses Webinar bereits angemeldet: "
+msgstr "You are already registered for this webinar at your email adress"
+
+#: includes/wc-send.php:173
+msgid "Fehler 404: Ungültiger Domain-Name. Bitte kontaktieren Sie den Webmaster"
+msgstr "Error 404: Invalid domain name. Please contact webmaster!"
+
+#: includes/wc-send.php:175
+msgid "Fehler 401: Ungültiger API Token. Bitte kontaktieren Sie den Webmaster"
+msgstr "Error 401: Invalid API Token. Please contact webmaster!"
+
+#: includes/wc-send.php:188
+msgid "Wordpress HTTP error. Bitte kontaktieren Sie den Webmaster"
+msgstr "Wordpress HTTP Error. Please contact webmaster!"
+
+#: wcsend.php:16
+msgid "Bitten geben Sie ihren Namen ein!"
+msgstr "Please enter your name!"
+
+#: wcsend.php:19
+msgid "Bitte geben Sie Ihren Vor- und Nachnahmen ein!"
+msgstr "Please enter your first and last name!"
+
+#: wcsend.php:41
+msgid "Bitte wählen Sie ein Webinar!"
+msgstr "Please select a webinar!"
+
+#: wcsend.php:180
+msgid "Fehler 404: Ungültiger Domain-Name. Bitte kontaktieren Sie den Webmaster!"
+msgstr "Error 404: Invalid domain name. Please contact webmaster!"
+
+#: wcsend.php:182
+msgid "Fehler 401: Ungültiger API Token. Bitte kontaktieren Sie den Webmaster!"
+msgstr "Error 401: Invalid API Token. Please contact webmaster!"
+
+#: wcsend.php:195
+msgid "Wordpress HTTP Fehler. Bitte kontaktieren Sie den Webmaster!"
+msgstr "Wordpress HTTP Error. Please contact webmaster!"
+
+#: weclapp.php:86
+msgid "Notwendige Einstellungen"
+msgstr "Neccessary settings"
+
+#: weclapp.php:93
+msgid "Nicht notwendige Einstellungen"
+msgstr "Unnecessary Settings"
+
+#: weclapp.php:115
+msgid "Unbekannte Personen platzieren als"
+msgstr "Unknown persons place as"
+
+#: weclapp.php:122
+msgid "Benutzerdefinierte Erfolgsmeldung"
+msgstr "Custom success message"
+
+#: weclapp.php:129
+msgid "Benutzerdefinierte Mitteilung, falls kein Webinar ansteht"
+msgstr "Custom message if no pending Webinar"
+
+#: weclapp.php:150
+msgid "Bitte geben Sie Ihren weclapp API Token sowie Ihren Domain-Namen ein"
+msgstr "Please enter your weclapp API token as well as your domain name"
+
+#: weclapp.php:155
+msgid "Hier können Sie bei Bedarf eigene Meldungen setzen."
+msgstr "Here you can put your own messages if necessary."
+
+#: weclapp.php:241
+msgid "Dauer ca."
+msgstr "Duration approximately"
+
+#: weclapp.php:241
+msgid "Min. | Nächster Termin:"
+msgstr "min. | next date"
+
+#: weclapp.php:248
+msgid "Inhalt"
+msgstr "topic"
+
+#: weclapp.php:255
+msgid "Name"
+msgstr "Name"
+
+#: weclapp.php:263
+msgid "Telefonnummer"
+msgstr "Phone number"
+
+#: weclapp.php:267
+msgid "Anmelden"
+msgstr "Register"
+
+#~ msgid "Bitte wählen Sie ein webinar"
+#~ msgstr "Please select a webinar!"
+
+#~ msgid "Bitten geben Sie ihren Namen ein"
+#~ msgstr "Please enter your name"
+
+#~ msgid "Bitte geben Sie Ihren Vor- und Nachnahmen ein"
+#~ msgstr "Please enter your first and last name"
+
+#~ msgid "Bitte geben Sie Ihre Email-Adresse ein"
+#~ msgstr "Please enter your email adress"
+
+#~ msgid "Bitte geben Sie eine gültige Email-Adresse ein"
+#~ msgstr "Please enter a valid email address"
+
+#~ msgid "Bitte geben Sie Ihre Telefonnummer ein"
+#~ msgstr "Please enter your phone number"
+
+#~ msgid "Bitte geben Sie eine gültige Telefonnummer ein"
+#~ msgstr "Please enter a valid phone number"
+
+#~ msgid "Bitte geben Sie Ihren weclapp API Token sowie ihren Domain-Namen ein"
+#~ msgstr "Please enter your weclapp API token as well as your domain name"
