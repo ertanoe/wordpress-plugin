@@ -2,7 +2,7 @@
 /*
 Plugin Name: weclapp 
 Plugin URI: 
-Version: Current Version
+Version: 1.0
 Author: <a href="http://www.weclapp.com"> weclapp GmbH </a>
 Text Domain: weclapp
 Domain Path: /languages
