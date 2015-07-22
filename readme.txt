@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: Lukas Kröger
+Contributors: Lukas KrÃ¶ger
 Tags: webinar, weclapp, campaign, Kampagne 
 Requires at least: 4.0
 Tested up to: 4.2.2
@@ -33,15 +33,7 @@ To use this feature, just place the Shortcode [weclappWebinar] into a chosen pos
 3.1 Enter your API Token
 3.2 Enter your domain name e.g. your_domain_name.weclapp.com (without "https://")
 
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-
 == Screenshots ==
-
 
 
 == Changelog ==
