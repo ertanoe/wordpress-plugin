@@ -1,5 +1,4 @@
-# wordpress-plugin
-weclapp integration for wordpress
+# weclapp-wordpress-plugin
 
 This plugin integrates weclapp functionality into wordpress CMS
 
@@ -21,14 +20,16 @@ Here you can see an example how this looks like:
 https://www.weclapp.com/de/webinare/
 
 <h4>Installation</h4>
-
-1. <a href="https://github.com/ertanoe/wordpress-plugin/archive/master.zip">Download Plugin</a>
-2. Upload plugin under Plugins -> Add new.
-3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Setup your plugin (can be found in weclapp under account name in the top right corner -> Settings)
-4.1 Enter your API Token
-4.2 Enter your domain name e.g. your_domain_name.weclapp.com (without "https://")
-
+<ul>
+<li><a href="https://github.com/ertanoe/wordpress-plugin/archive/master.zip">Download Plugin</a></li>
+<li>Upload plugin under Plugins -> Add new.</li>
+<li>Activate the plugin through the 'Plugins' menu in WordPress</li>
+<li>Setup your plugin (can be found in weclapp under account name in the top right corner -> Settings)</li>
+<ul> 
+  <li>Enter your API Token</li>
+  <li>Enter your domain name e.g. your_domain_name.weclapp.com (without "https://")</li>
+</ul>
+</ul>
 <h4>Changelog</h4>
 
 1.0 Initial version with campaign support
