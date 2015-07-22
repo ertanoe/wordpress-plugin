@@ -19,6 +19,14 @@ https://www.weclapp.com/de/webinare/
 
 <h5>More functionality will be added in the future</h5>
 
+<h5>Supported languages</h5>
+<ul>
+<li>German</li>
+<li>English</li>
+<li>Turkish</li>
+<li>Polsky</li>
+</ul>
+
 <h4>Installation</h4>
 <ul>
 <li><a href="https://github.com/ertanoe/wordpress-plugin/archive/master.zip">Download Plugin</a></li>
