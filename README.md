@@ -12,7 +12,7 @@ Adds the possibility to display campaigns and allow automatic campaign registrat
 If a user is not in your contact, lead, or customer list in weclapp then then the participant will be added to your contacts (contact type can be set in the Plugin Settings 
 under "Create new persons as").
 
-Participants trying to register repeatedly will be informed about their already existing participation.
+Participants trying to register repeatedly will be informed about their already existing participation. Such messages can be configured under the plugin settings.
 
 Here is a sample how the usage of the plugin looks like:
 https://www.weclapp.com/de/webinare/
@@ -28,13 +28,14 @@ https://www.weclapp.com/de/webinare/
 </ul>
 
 <h4> Example usage </h4>
-To use this feature, just place the Shortcode [weclapp] into a chosen post. 
 
-By default webinar is the campaign type. If you like to use another campaign type, use the Shortcode parameter "type". It is also possible to disable the formular using the Shortcode parameter displayformular="No". 
+To use this feature, just place the Shortcode <code>[weclapp]</code> into a chosen post. 
+
+By default webinar is the campaign type. If you like to use another campaign type, use the Shortcode parameter "type". It is also possible to disable the formular using the Shortcode parameter <code> displayformular="No" </code>. 
 
 For instance, if you like to list all upcoming events without a formular:
 
-[weclapp type="Event" displayformular="No"]
+<code> [weclapp type="Event" displayformular="No"] </code>
 
 Use the following names for the campaign types:
 * Event
