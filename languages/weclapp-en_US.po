@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: weclapp\n"
-"POT-Creation-Date: 2015-07-22 12:28+0200\n"
-"PO-Revision-Date: 2015-07-22 12:29+0200\n"
+"POT-Creation-Date: 2015-07-23 14:42+0200\n"
+"PO-Revision-Date: 2015-07-23 14:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-KeywordsList: _e;__;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: includes\n"
 
@@ -27,7 +27,7 @@ msgstr "Please enter your first and last name"
 
 #: includes/wc-send.php:25
 msgid "Bitte geben Sie Ihre Email-Adresse ein"
-msgstr "Please enter your email adress"
+msgstr "Please enter your email address"
 
 #: includes/wc-send.php:28
 msgid "Bitte geben Sie eine gültige Email-Adresse ein"
@@ -42,15 +42,17 @@ msgid "Bitte geben Sie eine gültige Telefonnummer ein"
 msgstr "Please enter a valid phone number"
 
 #: includes/wc-send.php:43
-msgid "Bitte wählen Sie ein Webinar"
-msgstr "Please select a webinar"
+msgid "Bitte wählen Sie eine Kampagne"
+msgstr "Please select a campaign"
 
 #: includes/wc-send.php:63
-msgid "Sie sind unter Ihrer E-Mail-Adresse für dieses Webinar bereits angemeldet: "
-msgstr "You are already registered for this webinar at your email adress"
+msgid ""
+"Sie sind unter Ihrer E-Mail-Adresse für diese Kampagne bereits angemeldet: "
+msgstr "You are already registered for this campaign at your email address:  "
 
 #: includes/wc-send.php:183
-msgid "Fehler 404: Ungültiger Domain-Name. Bitte kontaktieren Sie den Webmaster"
+msgid ""
+"Fehler 404: Ungültiger Domain-Name. Bitte kontaktieren Sie den Webmaster"
 msgstr "Error 404: Invalid domain name. Please contact webmaster!"
 
 #: includes/wc-send.php:185
@@ -58,69 +60,119 @@ msgid "Fehler 401: Ungültiger API Token. Bitte kontaktieren Sie den Webmaster"
 msgstr "Error 401: Invalid API Token. Please contact webmaster!"
 
 #: includes/wc-send.php:196
-msgid "Wordpress HTTP error. Bitte kontaktieren Sie den Webmaster"
-msgstr "Wordpress HTTP Error. Please contact webmaster!"
+msgid "Wordpress HTTP Fehler. Bitte kontaktieren Sie den Webmaster"
+msgstr "Wordpress HTTP error. Please contact webmaster!"
 
-#: weclapp.php:108
-msgid "Notwendige Einstellungen"
-msgstr "Neccessary settings"
+#: weclapp.php:52
+msgid "weclapp Einstellungen"
+msgstr "weclapp Settings"
 
-#: weclapp.php:115
-msgid "Nicht notwendige Einstellungen"
-msgstr "Unnecessary Settings"
+#: weclapp.php:107
+msgid "Allgemeine Einstellungen"
+msgstr "General settings"
 
-#: weclapp.php:122
-msgid "API Token"
-msgstr "API token"
+#: weclapp.php:114
+msgid "Kampagnen Einstellungen"
+msgstr "Campaign settings"
 
-#: weclapp.php:130
-msgid "Domain Name"
-msgstr "Domain name"
+#: weclapp.php:121
+msgid "API Token *"
+msgstr "API token *"
 
-#: weclapp.php:137
+#: weclapp.php:129
+msgid "Domain Name *"
+msgstr "Domain name *"
+
+#: weclapp.php:136
 msgid "Neue Benutzer anlegen als"
 msgstr "Create new persons as"
 
-#: weclapp.php:144
-msgid "Formular anzeigen"
-msgstr "Display formular"
-
-#: weclapp.php:151
+#: weclapp.php:143
 msgid "Benutzerdefinierte Erfolgsmeldung"
 msgstr "Custom success message"
 
-#: weclapp.php:158
-msgid "Benutzerdefinierte Mitteilung, falls kein Webinar ansteht"
-msgstr "Custom message if no pending Webinar"
+#: weclapp.php:150
+msgid "Benutzerdefinierte Mitteilung, falls keine Kampagne ansteht"
+msgstr "Custom message if no pending campaign"
 
-#: weclapp.php:179
+#: weclapp.php:171
 msgid "Bitte geben Sie Ihren weclapp API Token sowie Ihren Domain-Namen ein."
 msgstr "Please enter your weclapp API token as well as your domain name."
 
-#: weclapp.php:184
-msgid "Hier können Sie bei Bedarf eigene Meldungen setzen."
-msgstr "Here you can put your own messages if necessary."
-
-#: weclapp.php:277
+#: weclapp.php:298
 #, php-format
 msgid "Dauer ca. %1$s Min. | Nächster Termin: %2$s Uhr"
 msgstr "Duration approximately %1$s min. | Next date %2$s o'clock"
 
-#: weclapp.php:283
+#: weclapp.php:304
 msgid "Inhalt"
 msgstr "Topic"
 
-#: weclapp.php:291
+#: weclapp.php:312
 msgid "Name"
 msgstr "Name"
 
-#: weclapp.php:299
+#: weclapp.php:320
 msgid "Telefonnummer"
 msgstr "Phone number"
 
-#: weclapp.php:303
+#: weclapp.php:324
 msgid "Anmelden"
 msgstr "Register"
+
+#: weclapp.php:378
+msgid "Sie wurden erfolgreich an der Kampagne angemeldet!"
+msgstr "You have been successfully logged on to the campaign!"
+
+#: weclapp.php:386
+msgid ""
+"In der nächsten Zeit sind noch keine Kampagnen angesetzt. Schauen Sie später "
+"nochmal vorbei!"
+msgstr ""
+"Currently there are no upcoming campaigns available. Please come back later!"
+
+#~ msgid "Notwendige Einstellungen"
+#~ msgstr "Neccessary settings"
+
+#~ msgid "Nicht notwendige Einstellungen"
+#~ msgstr "Unnecessary Settings"
+
+#~ msgid "API Token"
+#~ msgstr "API token"
+
+#~ msgid "Domain Name"
+#~ msgstr "Domain name"
+
+#~ msgid "Formular anzeigen"
+#~ msgstr "Display formular"
+
+#~ msgid "Benutzerdefinierte Mitteilung, falls kein Webinar ansteht"
+#~ msgstr "Custom message if no pending Webinar"
+
+#~ msgid "Hier können Sie bei Bedarf eigene Meldungen setzen."
+#~ msgstr "Here you can put your own messages if necessary."
+
+#~ msgid "Bitte wählen Sie ein Webinar"
+#~ msgstr "Please select a webinar"
+
+#~ msgid ""
+#~ "Sie sind unter Ihrer E-Mail-Adresse für dieses Webinar bereits "
+#~ "angemeldet: "
+#~ msgstr ""
+#~ "You are already registered for this webinar at your email address:  "
+
+#~ msgid "Sie wurden erfolgreich am Webinar angemeldet!"
+#~ msgstr "You have been successfully logged on to the webinar!"
+
+#~ msgid ""
+#~ "In der nächsten Zeit sind noch keine Webinare angesetzt. Schauen Sie "
+#~ "später nochmal vorbei!"
+#~ msgstr ""
+#~ "Currently there are no upcoming webinars available. Please come back "
+#~ "later!"
+
+#~ msgid "Wordpress HTTP error. Bitte kontaktieren Sie den Webmaster"
+#~ msgstr "Wordpress HTTP Error. Please contact webmaster!"
 
 #~ msgid "Unbekannte Personen platzieren als"
 #~ msgstr "Unknown persons place as"
@@ -155,10 +207,12 @@ msgstr "Register"
 #~ msgid "Bitte wählen Sie ein Webinar!"
 #~ msgstr "Please select a webinar!"
 
-#~ msgid "Fehler 404: Ungültiger Domain-Name. Bitte kontaktieren Sie den Webmaster!"
+#~ msgid ""
+#~ "Fehler 404: Ungültiger Domain-Name. Bitte kontaktieren Sie den Webmaster!"
 #~ msgstr "Error 404: Invalid domain name. Please contact webmaster!"
 
-#~ msgid "Fehler 401: Ungültiger API Token. Bitte kontaktieren Sie den Webmaster!"
+#~ msgid ""
+#~ "Fehler 401: Ungültiger API Token. Bitte kontaktieren Sie den Webmaster!"
 #~ msgstr "Error 401: Invalid API Token. Please contact webmaster!"
 
 #~ msgid "Wordpress HTTP Fehler. Bitte kontaktieren Sie den Webmaster!"

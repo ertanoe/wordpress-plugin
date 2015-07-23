@@ -1,24 +1,24 @@
-function registerUser(  ) {
+function registerUser( campaignType ) {
 	// get the form data
 	// there are many ways to get this data using jQuery ( you can use the class or id also )
 
 	campaignIds = [];
-	jQuery( 'input[name=webinare][value=1]' ).each( function( index, elem ){
+	jQuery( 'input[name=checkbox_' + campaignType + '][value=1]' ).each( function( index, elem ){
 		campaignIds.push( jQuery( elem ).data( 'weclapp-campaign-id' ));
 	} );
 	json_campaignIds = JSON.stringify( campaignIds );
 	var formData = {
 		'action': 'weclapp_campaign_register',
-		'name'              : jQuery( 'input[name=wc_name]' ).val(),
-		'email'             : jQuery( 'input[name=wc_email]' ).val(),
-		'phone'    			: jQuery( 'input[name=wc_phone]' ).val(),
+		'name'              : jQuery( 'input[name=wc_name_' + campaignType  + ']' ).val(),
+		'email'             : jQuery( 'input[name=wc_email_'  + campaignType  + ']' ).val(),
+		'phone'    			: jQuery( 'input[name=wc_phone_'  + campaignType + ']' ).val(),
 		'campaignIds' 		: json_campaignIds,
 	};
-	jQuery( '#errorbox' ).hide();
-	jQuery( '#successbox' ).hide();
+	jQuery( '#errorbox_' + campaignType).hide();
+	jQuery( '#successbox_' + campaignType).hide();
 	jQuery( '.form-group' ).removeClass( 'has-error' ); // remove the error class
-	jQuery( '#errorbox span' ).empty();
-	jQuery('#loader').show();
+	jQuery( '#errorbox_' + campaignType + ' span' ).empty();
+	jQuery('#loader_' + campaignType).show();
 	jQuery.ajax( {
 		method        : 'POST', // define the type of HTTP verb we want to use ( POST for our form )
 		url         : frontendajax.ajaxurl,
@@ -26,41 +26,41 @@ function registerUser(  ) {
 		processData : true,
 		success: function( data ) {
 		data = JSON.parse( data );
-			jQuery('#loader').hide();
+			jQuery('#loader_' + campaignType).hide();
 			 if ( data.errors ) {
-				jQuery( '#errorbox' ).show();
+				jQuery( '#errorbox_'  + campaignType ).show();
 				// handle errors for name ---------------
 				if ( data.errors.name ) {
-					jQuery( '#name-group' ).addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#errorbox span' ).append( data.errors.name ); // add the actual error message input
+					jQuery( '#name-group_'  + campaignType ).addClass( 'has-error' ); // add the error class to show red input
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.name ); // add the actual error message input
 				}
 
 				// handle errors for email ---------------
 				if (  data.errors.email ) {
-					jQuery( '#email-group' ).addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#errorbox span' ).append( data.errors.email ); // add the actual error message under input
+					jQuery( '#email-group_'  + campaignType ).addClass( 'has-error' ); // add the error class to show red input
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.email ); // add the actual error message under input
 				}
 				// handle errors for phone ---------------
 				if ( data.errors.phone ) {
-					jQuery( '#phone-group' ).addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#errorbox span' ).append( data.errors.phone );
+					jQuery( '#phone-group_'  + campaignType ).addClass( 'has-error' ); // add the error class to show red input
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.phone );
 				}
 				// handle errors for campaign ---------------
 				if ( data.errors.campaignIds ) {
-					jQuery( '#errorbox span' ).append( data.errors.campaignIds );
+					jQuery( '#errorbox_'  + campaignType + ' span' ).append( data.errors.campaignIds );
 				}
 				if ( data.errors.wp_remote_request ) {
-					jQuery( '#errorbox span' ).append( data.errors.wp_remote_request );
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.wp_remote_request );
 				}
 				if ( data.errors.weclappApi ) {
-					jQuery( '#errorbox span' ).append( data.errors.weclappApi );
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.weclappApi );
 				}
 			} else {
 				// ALL GOOD! just show the success message!
 				//if (  !jQuery.isEmptyObject(  )  )
 				//{
-					jQuery( '#successbox span' ).html( data.message );
-					jQuery( '#successbox' ).show();
+					jQuery( '#successbox_'  + campaignType  + ' span' ).html( data.message );
+					jQuery( '#successbox_'  + campaignType).show();
 				//}
 			  }
 		}

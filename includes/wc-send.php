@@ -193,7 +193,7 @@
 	{
 		if ( is_wp_error( $result ) ) {
 			$error_message = $result->get_error_message();
-			$data['errors']['wp_remote_request'] = __( "Wordpress HTTP error. Bitte kontaktieren Sie den Webmaster" ) . $error_message . "<br />";
+			$data['errors']['wp_remote_request'] = __( "Wordpress HTTP Fehler. Bitte kontaktieren Sie den Webmaster" ) . $error_message . "<br />";
 			$data['success'] = false;
 			return true;
 		}
