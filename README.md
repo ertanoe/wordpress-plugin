@@ -62,6 +62,6 @@ Use the following names for the campaign types:
 
 1.0 Initial version with campaign support
 
-1.1 Shortcode parameters added.
+1.1 Shortcode parameters added and settings modified
   
 
