@@ -20,7 +20,7 @@ Automatic webinar registration. It integrates the following two elements into yo
 (this feature can be deactivated under Settings -> weclapp)
 
 If a user is not in your contact, lead, or customer list, he will be added to your contacts (contact type can be set in the Plugin Settings 
-under "Unknown persons place as").
+under "Create new persons as").
 Participants trying to register repeatedly will be informed about their already existing participation.
 To use this feature, just place the Shortcode [weclappWebinar] into a chosen post.
 
