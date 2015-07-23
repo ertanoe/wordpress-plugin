@@ -10,7 +10,7 @@ Adds the possibility to display campaigns and allow automatic webinar registrati
 * a display a submit form enabling visitors of your website to participate in one or more webinars with one single registration (this feature can be deactivated under Settings -> weclapp in WordPress)
 
 If a user is not in your contact, lead, or customer list in weclapp then then the participant will be added to your contacts (contact type can be set in the Plugin Settings 
-under "Unknown persons place as").
+under "Create new persons as").
 Participants trying to register repeatedly will be informed about their already existing participation.
 To use this feature, just place the Shortcode [weclappWebinar] into a chosen post.
 
