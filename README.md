@@ -7,7 +7,7 @@ Adds the possibility to display campaigns and allow automatic campaign registrat
 
 
 * a list of upcoming campaings of a chosen type scheduled in your weclapp account under CRM -> campaigns
-* a display of a submit form enabling visitors of your website to participate in one or more campaigns with one single registration (this feature can be deactivated using the Shortcode parameter displayformular="No")
+* a display of a submit form enabling visitors of your website to participate in one or more campaigns with one single registration (this feature can be deactivated using the Shortcode parameter <code>displayformular=0</code>)
 
 If a user is not in your contact, lead, or customer list in weclapp then then the participant will be added to your contacts (contact type can be set in the Plugin Settings 
 under "Create new persons as").
