@@ -11,8 +11,8 @@ Adds the possibility to display campaigns and allow automatic webinar registrati
 
 If a user is not in your contact, lead, or customer list in weclapp then then the participant will be added to your contacts (contact type can be set in the Plugin Settings 
 under "Create new persons as").
+
 Participants trying to register repeatedly will be informed about their already existing participation.
-To use this feature, just place the Shortcode [weclappWebinar] into a chosen post.
 
 Here is a sample how the usage of the plugin looks like:
 https://www.weclapp.com/de/webinare/
@@ -26,6 +26,9 @@ https://www.weclapp.com/de/webinare/
 <li>Turkish</li>
 <li>Polsky</li>
 </ul>
+
+<h4> Example usage </h4>
+To use this feature, just place the Shortcode [weclappWebinar] into a chosen post.
 
 <h4>Installation</h4>
 <ul>
