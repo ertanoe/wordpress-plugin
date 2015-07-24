@@ -40,10 +40,10 @@
 		$tempCampaignIds = str_replace("\\", "", $_POST["campaignIds"]);
 		$campaignIds = json_decode($tempCampaignIds);
 		if( empty( $campaignIds )) {
-			$data['errors']['campaignIds'] = __( "Bitte wählen Sie ein Webinar", "weclapp") . "<br />";
+			$data['errors']['campaignIds'] = __( "Bitte wählen Sie eine Kampagne", "weclapp") . "<br />";
 		}
 		if( empty( $data['errors'] )) {
-			//register user for each selected webinar
+			//register user for each selected campaign
 			foreach( $campaignIds as $check ) {
 				weclapp_single_campaign_register( $check, $name, $email, $phone, $api_header, $data );
 			}
@@ -57,10 +57,10 @@
 	**/
 	function weclapp_single_campaign_register( $campaignId, $name, $email, $phone, $api_header, &$data )
 	{
-		// try if e-mail is already participating in any of the wanted webinares
+		// try if e-mail is already participating in any of the wanted campaigns
 		$campaignName = weclapp_check_campaign( $campaignId, $email, $api_header, $data );
 		if($campaignName != null){
-			$data['message'] .= __( "Sie sind unter Ihrer E-Mail-Adresse für dieses Webinar bereits angemeldet: ", "weclapp" ) . $campaignName . " <br />";
+			$data['message'] .= __( "Sie sind unter Ihrer E-Mail-Adresse für diese Kampagne bereits angemeldet: ", "weclapp" ) . $campaignName . " <br />";
 		} else
 		{
 			//weclapp_contact_exists returns partyId if the contact exists or null, otherwise
@@ -70,7 +70,7 @@
 			{
 				$partyId = weclapp_create_contact( $name, $email, $phone, $api_header, $data );
 			}		
-			//call the api for actual webinar registration 
+			//call the api for actual campaign registration 
 			$arg = array ( 
 				'body'    => json_encode( array( 
 					'campaignId' => $campaignId, 
@@ -89,6 +89,9 @@
 			}
 		}
 	}
+	/**
+	*sanitize input with different methods
+	**/
 	function weclapp_clean_input( $input ) 
 	{
 		$input = trim( $input );
