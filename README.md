@@ -31,7 +31,7 @@ https://www.weclapp.com/de/webinare/
 <li>French</li>
 <li>Spanish</li>
 <li>Turkish</li>
-<li>Polsky</li>
+<li>Polish</li>
 </ul>
 
 If you encounter translation mistakes, feel free to inform us at the following email-address: support@weclapp.com
