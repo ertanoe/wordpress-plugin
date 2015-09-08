@@ -431,7 +431,7 @@ function weclapp_display_ticket_formular( $atts )
 		</div>
 		<div id="ticket_description_group" class="form-group">
 			<label for="wc_ticket_description">' . __("Beschreibung", "weclapp") . '</label> 
-			<textarea id="wc_ticket_description" rows="10" cols ="40" name="wc_ticket_description" class="form-control" />TESTESTEST</textarea>
+			<textarea id="wc_ticket_description" rows="10" cols ="40" name="wc_ticket_description" class="form-control" /></textarea>
 		</div>
 		<input type="submit" name="submit" id="submitbutton" value="'. __("Senden","weclapp") . '" onclick="sendTicket( )" />';
 	$ticketing_content .='<div style="padding-top: 20px;padding-bottom: 20px;">';
