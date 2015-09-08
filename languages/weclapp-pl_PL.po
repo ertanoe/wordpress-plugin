@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: weclapp\n"
-"POT-Creation-Date: 2015-07-24 12:49+0200\n"
-"PO-Revision-Date: 2015-07-24 12:49+0200\n"
+"POT-Creation-Date: 2015-09-08 11:26+0200\n"
+"PO-Revision-Date: 2015-09-08 11:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -17,51 +17,55 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/wc-send.php:16
+#: includes/wc-send.php:20 includes/wc-send.php:111
 msgid "Bitte geben Sie Ihren Namen ein"
 msgstr "Proszę wpisać swoje imię"
 
-#: includes/wc-send.php:20
+#: includes/wc-send.php:23 includes/wc-send.php:114
 msgid "Bitte geben Sie Ihren Vor -und Nachnamen ein"
 msgstr "Proszę wprowadzić swoją wstępną i nazwisko"
 
-#: includes/wc-send.php:25
+#: includes/wc-send.php:30 includes/wc-send.php:120
 msgid "Bitte geben Sie Ihre Email-Adresse ein"
 msgstr "Wpisz swój adres e-mail"
 
-#: includes/wc-send.php:28
+#: includes/wc-send.php:33 includes/wc-send.php:123
 msgid "Bitte geben Sie eine gültige Email-Adresse ein"
 msgstr "Proszę wpisać aktualny adres e-mail"
 
-#: includes/wc-send.php:33
-msgid "Bitte geben Sie Ihre Telefonnummer ein"
-msgstr "Podaj swój numer telefonu"
-
-#: includes/wc-send.php:36
+#: includes/wc-send.php:38
 msgid "Bitte geben Sie eine gültige Telefonnummer ein"
 msgstr "Proszę wpisać poprawny numer telefonu"
 
-#: includes/wc-send.php:43
+#: includes/wc-send.php:51
+msgid "Bitte geben Sie einen Betreff an"
+msgstr "Proszę wpisać temat wiadomości do"
+
+#: includes/wc-send.php:90
+msgid "Ihre Anfrage wurde erfolgreich gesendet."
+msgstr "Twoja prośba została pomyślnie wysłana ."
+
+#: includes/wc-send.php:138
 msgid "Bitte wählen Sie eine Kampagne"
 msgstr "Proszę wybrać kampanię"
 
-#: includes/wc-send.php:63
+#: includes/wc-send.php:158
 msgid ""
 "Sie sind unter Ihrer E-Mail-Adresse für diese Kampagne bereits angemeldet: "
 msgstr "Oni są pod adresem e-mail dla tej kampanii są już tutaj :  "
 
-#: includes/wc-send.php:186
+#: includes/wc-send.php:280
 msgid ""
 "Fehler 404: Ungültiger Domain-Name. Bitte kontaktieren Sie den Webmaster"
 msgstr ""
 "Błąd 404 : Nieprawidłowa nazwa domeny . Prosimy o kontakt z administratorem"
 
-#: includes/wc-send.php:188
+#: includes/wc-send.php:282
 msgid "Fehler 401: Ungültiger API Token. Bitte kontaktieren Sie den Webmaster"
 msgstr ""
 "Błąd 401 : Nieprawidłowy API tokena . Prosimy o kontakt z administratorem"
 
-#: includes/wc-send.php:199
+#: includes/wc-send.php:293
 msgid "Wordpress HTTP Fehler. Bitte kontaktieren Sie den Webmaster"
 msgstr "WordPress HTTP błąd. Prosimy o kontakt z administratorem"
 
@@ -167,19 +171,51 @@ msgstr "zawartość"
 msgid "Name"
 msgstr "nazwa"
 
-#: weclapp.php:338
+#: weclapp.php:338 weclapp.php:388
 msgid "Telefonnummer"
 msgstr "numer telefonu"
 
-#: weclapp.php:342
+#: weclapp.php:341
 msgid "Anmelden"
 msgstr "zapisać się"
 
-#: weclapp.php:396
+#: weclapp.php:370
+msgid "*Name"
+msgstr "*nazwa"
+
+#: weclapp.php:381
+msgid "Weitere Empfänger"
+msgstr "Inne odbiorca"
+
+#: weclapp.php:399
+msgid "Kategorie"
+msgstr "Kategoria"
+
+#: weclapp.php:401
+msgid "Bitte auswählen"
+msgstr "Proszę wybrać"
+
+#: weclapp.php:418
+msgid "*Priorität"
+msgstr "*priorytet"
+
+#: weclapp.php:429
+msgid "*Betreff"
+msgstr "*wzgląd"
+
+#: weclapp.php:433
+msgid "Beschreibung"
+msgstr "opis"
+
+#: weclapp.php:436
+msgid "Senden"
+msgstr "wysłać"
+
+#: weclapp.php:489
 msgid "Sie wurden erfolgreich an der Kampagne angemeldet"
 msgstr "Zostałeś pomyślnie zalogowany do kampanii"
 
-#: weclapp.php:404
+#: weclapp.php:497
 #, php-format
 msgid ""
 "In der nächsten Zeit sind noch keine Kampagnen vom Typ %s angesetzt. Schauen "
@@ -187,6 +223,15 @@ msgid ""
 msgstr ""
 "W niedalekiej przyszłości ma kampanie typu %s nie są rozpoznawane. Sprawdzaj "
 "na nowo"
+
+#~ msgid "Priorität"
+#~ msgstr "priorytet"
+
+#~ msgid "Betreff"
+#~ msgstr "wzgląd"
+
+#~ msgid "Bitte geben Sie Ihre Telefonnummer ein"
+#~ msgstr "Podaj swój numer telefonu"
 
 #~ msgid "Sie wurden erfolgreich an der Kampagne angemeldet!"
 #~ msgstr "Zostałeś pomyślnie zalogowany do kampanii !"

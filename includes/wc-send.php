@@ -1,5 +1,94 @@
 <?php
-	function weclapp_campaign_register()
+	/**
+	*function for form validation
+	**/
+	function weclapp_send_ticket( )
+	{
+		//array for errors, success state and success message 
+		$data = array(
+			'message' => '',
+			'error' => array( 
+				'ticket' => '',
+				)
+		);
+		//check all fields passed by AJAX-call
+		$name = weclapp_clean_input( $_POST["ticket_name"] );
+		if ( empty( $name )) {
+			$data['errors']['ticket']['name'] = __( "Bitte geben Sie Ihren Namen ein", "weclapp" ) . "<br />";
+		} else {
+			if( !preg_match( '/\s/', $name )) {
+				$data['errors']['ticket']['name'] = __( "Bitte geben Sie Ihren Vor -und Nachnamen ein", "weclapp" ) . "<br />";
+			}
+		}
+		//call function weclapp_clean_input for cleaning the passed input
+		$email = weclapp_clean_input( $_POST["ticket_email"] );
+		if ( empty( $email )) {
+			error_log("Email leer", 0);
+			$data['errors']['ticket']['email'] = __( "Bitte geben Sie Ihre Email-Adresse ein", "weclapp" ) . "<br />";
+		} else {
+			if ( !is_email( $email )) {
+				$data['errors']['ticket']['email'] = __( "Bitte geben Sie eine gültige Email-Adresse ein", "weclapp" ) . "<br />";
+			}
+		} 
+		//phone number only needs validation if not empty otherwise it must have the value ''
+		if( !empty( $phone ) && !ctype_digit( $phone )) {
+			$data['errors']['ticket']['phone'] = __( "Bitte geben Sie eine gültige Telefonnummer ein", "weclapp" ) . "<br />";
+		} else {
+			$phone = '';
+		}
+		$subject = weclapp_clean_input( $_POST["ticket_subject"] );
+		if ( empty( $subject )) {
+			$data['errors']['ticket']['subject'] = __( "Bitte geben Sie einen Betreff an", "weclapp" ) . "<br />";
+		} 
+		//description does not need validation
+		$description = weclapp_clean_input( $_POST["ticket_description"] );
+		//if category is disabled, set category to ''
+		if( !empty( $_POST["ticket_category"] )) {
+			$category = weclapp_clean_input( $_POST["ticket_category"] );
+		} else {
+			$category = '';
+		}
+		//priority does not need validation 
+		$priority = weclapp_clean_input( $_POST["ticket_priority"] );
+		if( empty( $data['errors']['ticket'] )) {
+			//if no errors occurred, create the ticket
+			sendTicket( $name, $email, $phone, $subject, $description, $category, $priority, $data );
+		}
+		//send the $data array to AJAX call function
+		echo json_encode( $data );
+		die();
+	}
+	/**
+	*function for api call to create ticket
+	**/
+	function sendTicket( $name, $email, $phone, $subject, $description, $category, $priority, &$data )
+	{
+		$api_header = array(
+			'Content-type'  => 'application/json', 
+			'Authorization' => 'Basic ' . base64_encode( '*' . ':' . weclapp_get_option( "api_token" ) )
+		);
+		$arg = array ( 
+				'body'    => json_encode( array( 
+					'description' => $description, 
+					'subject'    => $subject,
+					'ticketCategoryId' => $category,
+					'ticketPriorityId' => $priority,
+					'status' => 'UNVERIFIED'
+					)),
+				'headers' => $api_header,
+		);
+		$response = wp_remote_post ( "https://" . weclapp_get_option( "domain_name" ) . ".weclapp.com/webapp/api/v1/ticket" , $arg );
+		$data['response'] = $response;
+		if ( empty( $data['errors']['ticket'] )) {
+			$data['success'] = true;
+			//success message 
+			$data['message'] .= __("Ihre Anfrage wurde erfolgreich gesendet.", "weclapp") ."<br />";
+		} else {
+			// success state notifies AJAX-call of errors to be displayed
+			$data['success'] = false;
+		}
+	}
+	function weclapp_campaign_register( )
 	{
 		//array for errors, success state and success message 
 		$data = array(
@@ -15,11 +104,11 @@
 		if ( empty( $name )) {
 			$data['errors']['name'] = __( "Bitte geben Sie Ihren Namen ein", "weclapp" ) . "<br />";
 		} else {
-			//call function weclapp_clean_input for cleaning the passed input
 			if( !preg_match( '/\s/', $name )) {
 				$data['errors']['name'] = __( "Bitte geben Sie Ihren Vor -und Nachnamen ein", "weclapp" ) . "<br />";
 			}
 		}
+		//call function weclapp_clean_input for cleaning the passed input
 		$email = weclapp_clean_input( $_POST["email"] );
 		if ( empty( $email )) {
 			$data['errors']['email'] = __( "Bitte geben Sie Ihre Email-Adresse ein", "weclapp" ) . "<br />";
@@ -29,13 +118,13 @@
 			}
 		}
 		$phone = weclapp_clean_input( $_POST["phone"] );
-		if ( empty( $phone )) {
+		/*if ( empty( $phone )) {
 			$data['errors']['phone'] = __( "Bitte geben Sie Ihre Telefonnummer ein", "weclapp" ) . "<br />";
 		} else {
 			if ( !ctype_digit( $phone )) {
-				$data['errors']['email'] = __( "Bitte geben Sie eine gültige Telefonnummer ein", "weclapp" ) . "<br />";
+				$data['errors']['phone'] = __( "Bitte geben Sie eine gültige Telefonnummer ein", "weclapp" ) . "<br />";
 			}
-		}
+		}*/
 		//remove unwanted characters from campaignIds-array
 		$tempCampaignIds = str_replace("\\", "", $_POST["campaignIds"]);
 		$campaignIds = json_decode($tempCampaignIds);
@@ -48,6 +137,7 @@
 				weclapp_single_campaign_register( $check, $name, $email, $phone, $api_header, $data );
 			}
 		}
+		//send the $data array to AJAX call function
 		echo json_encode( $data );
 		die();
 	}
@@ -145,7 +235,6 @@
 		if ( !isset( $result['result']['0'] ) ) {
 			return null;
 		}
-		//error_log(json_encode($result), 3, "C:\\Bitnami\\wordpress-4.2.2-0\\apache2\\logs\\error.log");
 		//return partyId otherwise
 		else {
 			$partyId = $result['result']['0']['id'];
@@ -202,4 +291,3 @@
 		}
 		return false;
 	}
-?>

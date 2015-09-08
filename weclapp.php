@@ -229,14 +229,14 @@ function weclapp_display_campaign_til()
 	$currentTime = ( time() * 1000 );
 	//offset in milliseconds
 	$timeOffset = 3600000;
-	$displayTill = $currentTime + $timeOffset;
-	return $displayTill;
+	$displayTil = $currentTime + $timeOffset;
+	return $displayTil;
 }
 
 /**
 *api call to display upcoming webinars as well as a formular
 **/
-function weclapp_api( $atts ) 
+function weclapp_display_campaign_formular( $atts ) 
 {
 	//extract shortcode parameters and set default values
 	extract( shortcode_atts( array(
@@ -294,12 +294,12 @@ function weclapp_api( $atts )
 		)
 	);
 	//get all upcoming webinars 
-	$result = wp_remote_retrieve_body( wp_remote_get( 'https://'.weclapp_get_option("domain_name").'.weclapp.com/webapp/api/v1/campaign/?campaignType-eq=' . $uCampaignType . '&campaignStartDate-gt='.weclapp_display_campaign_til(), $args ));
+	$result = wp_remote_retrieve_body( wp_remote_get( 'https://'.weclapp_get_option("domain_name").'.weclapp.com/webapp/api/v1/campaign/?campaignType-eq=' . $uCampaignType . '&campaignStartDate-gt=' . weclapp_display_campaign_til(), $args ));
 	$result = json_decode( $result, true );
 	$result = $result['result'];
 	//if there are no upcoming webinars, display a custom webinar message or the default one, respectively
 	if ( empty( $result )) {
-		//placeholder for campaigntype in nowebinar-string
+	//placeholder for campaigntype in nowebinar-string
 		$content = sprintf(weclapp_get_option( "nowebinars" ),  $campaignType);
 	} else {
 		$content = '<div class="webinar-container">';
@@ -328,18 +328,17 @@ function weclapp_api( $atts )
 			$content .= '
 				<div id="name-group_"' . $type . '" class="form-group">
 					<label for="weclapp-name">' . __("Name", "weclapp") . '</label> 
-					<input id="weclapp-name" name="wc_name_' . $type . '" type="text" value="Hans Mueller" class="form-control" />
+					<input id="weclapp-name" name="wc_name_' . $type . '" type="text" class="form-control" />
 				</div>
 				<div id="email-group_"' . $type . '" class="form-group">
 					<label for="weclapp-email"> E-Mail </label> 
-					<input id="weclapp-email" name="wc_email_' . $type . '" type="text" value="hans@aol.com" class="form-control" />
+					<input id="weclapp-email" name="wc_email_' . $type . '" type="text" class="form-control" />
 				</div>
 				<div id="phone-group_"' . $type . '" class="form-group">
 					<label for="weclapp-phone">' . __("Telefonnummer", "weclapp") . '</label> 
-					<input id="weclapp-phone" name="wc_phone_' . $type . '" type="text" value="1234" class="form-control" />
+					<input id="weclapp-phone" name="wc_phone_' . $type . '" type="text" class="form-control" />
 				</div>
-				<p id = "demo"></p>
-				<input type="submit" name="submit" id="submitbutton" value="'. __("Anmelden","weclapp") . '" onclick="registerUser(\'' . $type . '\')" />';
+				<input type="submit" name="submit" id="submitbutton" value="'. __("Anmelden","weclapp") . '" onclick="registerCampaignUser(\'' . $type . '\')" />';
 			$content .='<div style="padding-top: 20px;padding-bottom: 20px;">';
 			$content .='<div id="loader_' . $type . '" style="display: none;"> <img src="' . plugin_dir_url(  __FILE__  ) . 'assets/icons/ajax-loader.gif"> </div>';
 			$content .='<div id="errorbox_' . $type . '" class="weclapp-error-message" style="display: none;"><span></span></div>';
@@ -348,12 +347,105 @@ function weclapp_api( $atts )
 	}
 	return $content;
 }
+/**
+*display a user ticket formular and send the ticket to the weclapp account
+**/
+function weclapp_display_ticket_formular( $atts )
+{
+	//extract shortcode parameters
+	extract( shortcode_atts( array(
+		'phone_number' => 0,
+		'additional_recipients' => 0,
+		'category' => 0
+	), $atts));
+	//parameters needed for api call
+	$args = array(
+			'headers' => array(
+				'Authorization' => 'Basic ' . base64_encode( "*" . ':' . weclapp_get_option("api_token") )
+			)
+		);
+	//display name and email fields
+	$ticketing_content = '
+		<div id="ticket_name_group" class="form-group">
+			<label for="wc_ticket_name">' . __("*Name", "weclapp") . '</label> 
+			<input id="wc_ticket_name" name="wc_ticket_name" type="text" value="Hans Mueller" class="form-control" />
+		</div>
+		<div id="ticket_email_group" class="form-group">
+			<label for="wc_ticket_email"> *E-Mail </label> 
+			<input id="wc_ticket_email" name="wc_ticket_email" type="text" value="hans@aol.com" class="form-control" />
+		</div>';
+	//if requested, display additional recipients, phone number and category fields
+	if( true == $additional_recipients) {
+		$ticketing_content .= '	
+			<div id="ticket_additional_email_group" class="form-group">
+				<label for="wc_ticket_additional_email">' . __("Weitere Empfänger", "weclapp") . '</label> 
+				<input id="wc_ticket_additional_email" name="wc_ticket_additional_email" type="text" value="hans2@aol.com" class="form-control" />
+			</div>';
+	}
+	if( true == $phone_number ) {
+		$ticketing_content .= '
+			<div id="ticket_phone_group" class="form-group">
+				<label for="wc_ticket_phone">' . __("Telefonnummer", "weclapp") . '</label> 
+				<input id="wc_ticket_phone" name="wc_ticket_phone" type="text" value="1234" class="form-control" />
+			</div>';
+	}
+	if( true == $category ) {
+		//api request to determine the user created categories
+		$ticketCategory = wp_remote_retrieve_body( wp_remote_get( 'https://'.weclapp_get_option("domain_name").'.weclapp.com/webapp/api/v1/ticketCategory', $args ));
+		$ticketCategory = json_decode( $ticketCategory, true );
+		$ticketCategory = $ticketCategory['result'];
+		$ticketing_content .= '
+			<div id="ticket_category_group" class="form-group">
+				<label for="wc_ticket_category">' . __("Kategorie", "weclapp") . '</label> 
+				<select id="wc_ticket_category" name="wc_ticket_priority" type="text" value="Test" class="form-control">
+					<option value="">'. __("Bitte auswählen", "weclapp") . '</option>';
+		foreach ( $ticketCategory as &$val ) {
+			$ticketing_content .= '
+					<option value=' . $val['id']  . '>' . $val['name'] .'</option>';
+		}
+		$ticketing_content .= '	
+				</select> 			
+			</div>';
+		//$ticketing_content .= $result . 'sadadasd';
+		//error_log($result, 0);
+	}
+	//api request to determine the user created priorities
+	$ticketPriority = wp_remote_retrieve_body( wp_remote_get( 'https://'.weclapp_get_option("domain_name").'.weclapp.com/webapp/api/v1/ticketPriority', $args ));
+	$ticketPriority = json_decode( $ticketPriority, true );
+	$ticketPriority = $ticketPriority['result'];
+	$ticketing_content .= '
+		<div id="ticket_priority_group" class="form-group">
+			<label for="wc_ticket_priority">' . __("*Priorität", "weclapp") . '</label> 
+			<select id="wc_ticket_priority" name="wc_ticket_priority" type="text" value="Test" class="form-control">';
+	foreach ( $ticketPriority as &$val ) {
+		$ticketing_content .= '
+				<option value=' . $val['id']  . '>' . $val['name'] .'</option>';
+	}
+	//display subject and description field submitbutton calls sendTicket in weclapp.js (AJAX call)
+	$ticketing_content .= '	
+			</select> 			
+		</div>
+		<div id="ticket_subject_group" class="form-group">
+			<label for="wc_ticket_subject">' . __("*Betreff", "weclapp") . '</label> 
+			<input id="wc_ticket_subject" name="wc_ticket_subject" type="text" value="Test" class="form-control" />
+		</div>
+		<div id="ticket_description_group" class="form-group">
+			<label for="wc_ticket_description">' . __("Beschreibung", "weclapp") . '</label> 
+			<textarea id="wc_ticket_description" rows="10" cols ="40" name="wc_ticket_description" class="form-control" />TESTESTEST</textarea>
+		</div>
+		<input type="submit" name="submit" id="submitbutton" value="'. __("Senden","weclapp") . '" onclick="sendTicket( )" />';
+	$ticketing_content .='<div style="padding-top: 20px;padding-bottom: 20px;">';
+	$ticketing_content .='<div id="ticket_loader" style="display: none;"> <img src="' . plugin_dir_url(  __FILE__  ) . 'assets/icons/ajax-loader.gif"> </div>';
+	$ticketing_content .='<div id="ticket_errorbox" class="weclapp-error-message" style="display: none;"><span></span></div>';
+	$ticketing_content .='<div id="ticket_successbox" class="weclapp-success-message" style="display: none;"><span></span></div>';
+	return $ticketing_content;
+}
+	
 
 function weclapp_register_shortcodes() 
 {
-    add_shortcode( 'registerWebinar', 'registerWebinar');
-    add_shortcode( 'weclapp', 'weclapp_api' );
-
+    add_shortcode( 'weclappCampaigns', 'weclapp_display_campaign_formular' );
+	add_shortcode( 'weclappTicketing', 'weclapp_display_ticket_formular' );
 }
 
 /**
@@ -371,7 +463,8 @@ add_action( 'wp_enqueue_scripts', 'weclapp_add_scripts' );
 //AJAX-call in weclapp.js, associated functions in wcsend.php
 add_action( 'wp_ajax_nopriv_weclapp_campaign_register', 'weclapp_campaign_register' );
 add_action( 'wp_ajax_weclapp_campaign_register', 'weclapp_campaign_register' );
-
+add_action( 'wp_ajax_nopriv_weclapp_send_ticket', 'weclapp_send_ticket');
+add_action( 'wp_ajax_weclapp_send_ticket', 'weclapp_send_ticket');
 add_action( 'init', 'weclapp_register_shortcodes');
 
 /**

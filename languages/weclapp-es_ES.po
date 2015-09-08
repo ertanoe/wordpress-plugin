@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: weclapp\n"
-"POT-Creation-Date: 2015-07-24 12:47+0200\n"
-"PO-Revision-Date: 2015-07-24 12:47+0200\n"
+"POT-Creation-Date: 2015-09-08 11:24+0200\n"
+"PO-Revision-Date: 2015-09-08 11:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,55 +17,59 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: includes\n"
 
-#: includes/wc-send.php:16
+#: includes/wc-send.php:20 includes/wc-send.php:111
 msgid "Bitte geben Sie Ihren Namen ein"
 msgstr "Por favor, introduzca su nombre"
 
-#: includes/wc-send.php:20
+#: includes/wc-send.php:23 includes/wc-send.php:114
 msgid "Bitte geben Sie Ihren Vor -und Nachnamen ein"
 msgstr "Introduzca su pre - y apellidos"
 
-#: includes/wc-send.php:25
+#: includes/wc-send.php:30 includes/wc-send.php:120
 msgid "Bitte geben Sie Ihre Email-Adresse ein"
 msgstr "Por favor, introduzca su dirección de correo electrónico"
 
-#: includes/wc-send.php:28
+#: includes/wc-send.php:33 includes/wc-send.php:123
 msgid "Bitte geben Sie eine gültige Email-Adresse ein"
 msgstr "Por favor, introduzca una dirección válida de correo electrónico"
 
-#: includes/wc-send.php:33
-msgid "Bitte geben Sie Ihre Telefonnummer ein"
-msgstr "Por favor, introduzca su número de teléfono"
-
-#: includes/wc-send.php:36
+#: includes/wc-send.php:38
 msgid "Bitte geben Sie eine gültige Telefonnummer ein"
 msgstr "Por favor, introduzca un número de teléfono válido"
 
-#: includes/wc-send.php:43
+#: includes/wc-send.php:51
+msgid "Bitte geben Sie einen Betreff an"
+msgstr "Por favor, introduzca su nombre"
+
+#: includes/wc-send.php:90
+msgid "Ihre Anfrage wurde erfolgreich gesendet."
+msgstr "Su solicitud ha sido enviado con éxito."
+
+#: includes/wc-send.php:138
 msgid "Bitte wählen Sie eine Kampagne"
 msgstr "Por favor, seleccione una campaña"
 
-#: includes/wc-send.php:63
+#: includes/wc-send.php:158
 msgid ""
 "Sie sind unter Ihrer E-Mail-Adresse für diese Kampagne bereits angemeldet: "
 msgstr ""
 "Están bajo su dirección de correo electrónico para esta campaña ya están "
 "aquí:  "
 
-#: includes/wc-send.php:186
+#: includes/wc-send.php:280
 msgid ""
 "Fehler 404: Ungültiger Domain-Name. Bitte kontaktieren Sie den Webmaster"
 msgstr ""
 "Error 404 : el nombre de dominio no válido . Por favor, póngase en contacto "
 "con el Webmaster"
 
-#: includes/wc-send.php:188
+#: includes/wc-send.php:282
 msgid "Fehler 401: Ungültiger API Token. Bitte kontaktieren Sie den Webmaster"
 msgstr ""
 "Error 401 : token de API no válida . Por favor, póngase en contacto con el "
 "Webmaster"
 
-#: includes/wc-send.php:199
+#: includes/wc-send.php:293
 msgid "Wordpress HTTP Fehler. Bitte kontaktieren Sie den Webmaster"
 msgstr "WordPress HTTP error. Por favor, póngase en contacto con el Webmaster"
 
@@ -171,19 +175,51 @@ msgstr "Contenido"
 msgid "Name"
 msgstr "Nombre"
 
-#: weclapp.php:338
+#: weclapp.php:338 weclapp.php:388
 msgid "Telefonnummer"
 msgstr "Número telefónico"
 
-#: weclapp.php:342
+#: weclapp.php:341
 msgid "Anmelden"
 msgstr "Registro"
 
-#: weclapp.php:396
+#: weclapp.php:370
+msgid "*Name"
+msgstr "*Nombre"
+
+#: weclapp.php:381
+msgid "Weitere Empfänger"
+msgstr "Otro destinatario"
+
+#: weclapp.php:399
+msgid "Kategorie"
+msgstr "Categoría"
+
+#: weclapp.php:401
+msgid "Bitte auswählen"
+msgstr "Por favor, seleccione"
+
+#: weclapp.php:418
+msgid "*Priorität"
+msgstr "*Prioridad"
+
+#: weclapp.php:429
+msgid "*Betreff"
+msgstr "*Respecto"
+
+#: weclapp.php:433
+msgid "Beschreibung"
+msgstr "Descripción"
+
+#: weclapp.php:436
+msgid "Senden"
+msgstr "Enviar"
+
+#: weclapp.php:489
 msgid "Sie wurden erfolgreich an der Kampagne angemeldet"
 msgstr "Usted ha sido registrado con éxito en la campaña"
 
-#: weclapp.php:404
+#: weclapp.php:497
 #, php-format
 msgid ""
 "In der nächsten Zeit sind noch keine Kampagnen vom Typ %s angesetzt. Schauen "
@@ -191,6 +227,15 @@ msgid ""
 msgstr ""
 "En un futuro próximo no se ha detectado ninguna campañas de tipo %s . Vuelve "
 "otra vez "
+
+#~ msgid "Priorität"
+#~ msgstr "prioridad"
+
+#~ msgid "Betreff"
+#~ msgstr "respecto"
+
+#~ msgid "Bitte geben Sie Ihre Telefonnummer ein"
+#~ msgstr "Por favor, introduzca su número de teléfono"
 
 #~ msgid "Sie wurden erfolgreich an der Kampagne angemeldet!"
 #~ msgstr "Usted ha sido registrado con éxito en la campaña!"
