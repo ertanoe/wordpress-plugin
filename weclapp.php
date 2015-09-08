@@ -368,25 +368,25 @@ function weclapp_display_ticket_formular( $atts )
 	$ticketing_content = '
 		<div id="ticket_name_group" class="form-group">
 			<label for="wc_ticket_name">' . __("*Name", "weclapp") . '</label> 
-			<input id="wc_ticket_name" name="wc_ticket_name" type="text" value="Hans Mueller" class="form-control" />
+			<input id="wc_ticket_name" name="wc_ticket_name" type="text" class="form-control" />
 		</div>
 		<div id="ticket_email_group" class="form-group">
 			<label for="wc_ticket_email"> *E-Mail </label> 
-			<input id="wc_ticket_email" name="wc_ticket_email" type="text" value="hans@aol.com" class="form-control" />
+			<input id="wc_ticket_email" name="wc_ticket_email" type="text" class="form-control" />
 		</div>';
 	//if requested, display additional recipients, phone number and category fields
 	if( true == $additional_recipients) {
 		$ticketing_content .= '	
 			<div id="ticket_additional_email_group" class="form-group">
 				<label for="wc_ticket_additional_email">' . __("Weitere Empfänger", "weclapp") . '</label> 
-				<input id="wc_ticket_additional_email" name="wc_ticket_additional_email" type="text" value="hans2@aol.com" class="form-control" />
+				<input id="wc_ticket_additional_email" name="wc_ticket_additional_email" type="text" class="form-control" />
 			</div>';
 	}
 	if( true == $phone_number ) {
 		$ticketing_content .= '
 			<div id="ticket_phone_group" class="form-group">
 				<label for="wc_ticket_phone">' . __("Telefonnummer", "weclapp") . '</label> 
-				<input id="wc_ticket_phone" name="wc_ticket_phone" type="text" value="1234" class="form-control" />
+				<input id="wc_ticket_phone" name="wc_ticket_phone" type="text"  class="form-control" />
 			</div>';
 	}
 	if( true == $category ) {
@@ -416,7 +416,7 @@ function weclapp_display_ticket_formular( $atts )
 	$ticketing_content .= '
 		<div id="ticket_priority_group" class="form-group">
 			<label for="wc_ticket_priority">' . __("*Priorität", "weclapp") . '</label> 
-			<select id="wc_ticket_priority" name="wc_ticket_priority" type="text" value="Test" class="form-control">';
+			<select id="wc_ticket_priority" name="wc_ticket_priority" type="text" class="form-control">';
 	foreach ( $ticketPriority as &$val ) {
 		$ticketing_content .= '
 				<option value=' . $val['id']  . '>' . $val['name'] .'</option>';
@@ -427,7 +427,7 @@ function weclapp_display_ticket_formular( $atts )
 		</div>
 		<div id="ticket_subject_group" class="form-group">
 			<label for="wc_ticket_subject">' . __("*Betreff", "weclapp") . '</label> 
-			<input id="wc_ticket_subject" name="wc_ticket_subject" type="text" value="Test" class="form-control" />
+			<input id="wc_ticket_subject" name="wc_ticket_subject" type="text" class="form-control" />
 		</div>
 		<div id="ticket_description_group" class="form-group">
 			<label for="wc_ticket_description">' . __("Beschreibung", "weclapp") . '</label> 
