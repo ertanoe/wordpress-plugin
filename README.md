@@ -67,7 +67,7 @@ Multiple formulars on one page (with different campaign types respectively) can 
 
 <h4> Ticket Management </h4>
 
-The only thing necessary is to insert the shortcode <code>[weclappTicketing]</code> into one of your posts. 
+The only thing necessary is inserting the shortcode <code>[weclappTicketing]</code> into one of your posts. 
 Optionally, you can add the following fields to the formular using the shortcode parameters in brackets:
 
 * phone number (<code>phone_number=1</code>)
