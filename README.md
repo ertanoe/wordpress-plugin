@@ -78,8 +78,7 @@ For example, the following shortcode will display the submit formular including 
 
 <code>[weclappTicketing category=1]</code>
   
-
-<h4>Installation</h4>
+<h3>Installation</h3>
 <ul>
 <li><a href="https://github.com/ertanoe/wordpress-plugin/archive/master.zip">Download Plugin</a></li>
 <li>Upload plugin under Plugins -> Add new.</li>
@@ -91,20 +90,7 @@ For example, the following shortcode will display the submit formular including 
 </ul>
 </ul>
 
-
-== Screenshots ==
-
-For an impression visit https://www.weclapp.com/de/webinare/
-
-1. Plugin settings
-
-2. List of all campaigns with type webinar with one opened description
-
-3. List of all campaigns with type webinar including a formular
-
-4. Support request formular
-
-== Changelog ==
+<h3> Changelog </h3>
 
 1.0 Initial version with campaign support only
 
@@ -112,11 +98,6 @@ For an impression visit https://www.weclapp.com/de/webinare/
 
 1.2 Ticket Management added, shortcode parameters changed 
 
-== Upgrade Notice ==
-
-1.1 Update to this version to use all kinds of campaigns and more than one weclapp-Shortcodes on one page.
-
-1.2 Update to this version to use Ticket Management 
 
 
 
