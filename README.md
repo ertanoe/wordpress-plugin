@@ -2,7 +2,7 @@
 
 This plugin integrates weclapp functionality into wordpress CMS
 
-== Description ==
+<h3> Description </h3>
 
 <h4> Campaign Management </h4>
 
@@ -39,7 +39,7 @@ Allows the visitors of your webpage to send a support query by means of a submit
 
 If you encounter translation mistakes, feel free to inform us at the following email-address: support[@]weclapp.com
 
-== Example Usage ==
+<h3> Example Usage </h3>
 
 <h4> Campaign Management </h4>
 
@@ -78,8 +78,6 @@ For example, the following shortcode will display the submit formular including 
 
 <code>[weclappTicketing category=1]</code>
   
-
-== Installation ==
 
 <h4>Installation</h4>
 <ul>
