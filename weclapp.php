@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: weclapp 
+Plugin Name: weclapp
 Plugin URI: https://de.wordpress.org/plugins/weclapp/
-Version: 1.2
+Version: 1.3
 Author: <a href="http://www.weclapp.com"> weclapp GmbH </a>
 Text Domain: weclapp
 Domain Path: /languages
@@ -26,11 +26,11 @@ add_action( 'plugins_loaded', 'weclapp_load_plugin_textdomain' );
 function add_plugin_page()
 {
 	add_options_page(
-	'weclapp Settings', 
-		'weclapp', 
-		'manage_options', 
-		'weclapp-settings', 
-		'create_admin_page' 
+	'weclapp Settings',
+		'weclapp',
+		'manage_options',
+		'weclapp-settings',
+		'create_admin_page'
 	);
 }
 
@@ -45,16 +45,18 @@ function create_admin_page()
 	weclapp_get_option("contact_placement");
 	weclapp_get_option("success_message");
 	weclapp_get_option("nowebinars");
-	
+	weclapp_get_option("display_alignment");
+
+
 			// This prints out all hidden setting fields
-	?> 
+	?>
 	<div class="wrap">
 		<h2><?php esc_html_e("weclapp Einstellungen","weclapp");?></h2>
 		<form method="post" action="options.php">
 		<?php
-			settings_fields( 'weclapp_options' );   
+			settings_fields( 'weclapp_options' );
 			do_settings_sections( 'weclapp-settings' );
-			submit_button(); 
+			submit_button();
 		?>
 		</form>
 	</div>
@@ -65,13 +67,13 @@ function create_admin_page()
 *Register and add settings
 */
 function page_init()
-{        
+{
 	register_setting(
 		'weclapp_options', // Option group
 		'api_token', // Option name
 		'sanitize_input'  // Sanitize
 	);
-	
+
 	register_setting(
 		'weclapp_options', // Option group
 		'domain_name', // Option name
@@ -83,79 +85,102 @@ function page_init()
 		'contact_placement', // Option name
 		'sanitize_input' // Sanitize
 	);
-	
+
 	register_setting(
 		'weclapp_options', // Option group
 		'display_form', // Option name
 		'sanitize_input'  // Sanitize
 	);
-	
+
 	register_setting(
 		'weclapp_options', // Option group
 		'success_message', // Option name
 		'sanitize_input'  // Sanitize
 	);
-	
+
 	register_setting(
 		'weclapp_options', // Option group
 		'nowebinars', // Option name
 		'sanitize_input'  // Sanitize
 	);
-	
+
+	register_setting(
+		'weclapp_options', // Option group
+		'display_alignment', // Option name
+		'sanitize_input'  // Sanitize
+	);
+
 	add_settings_section(
 		'general_section', // ID
 		__('Allgemeine Einstellungen','weclapp'), // Title
 		'print_general_info', // Callback
 		'weclapp-settings' // Page
-	);  
+	);
 
 	add_settings_section(
 		'campaign_section', // ID
 		__('Kampagnen Einstellungen','weclapp'), // Title
 		'print_campaign_section_info' , // Callback
 		'weclapp-settings' // Page
-	);  
-	
+	);
+
+	add_settings_section(
+		'display_section', // ID
+		__('Darstellung','weclapp'), // Title
+		'print_display_section_info' , // Callback
+		'weclapp-settings' // Page
+	);
+
+	add_settings_field(
+		'display_alignment', // ID
+		__('Ausrichtung der Anzeige','weclapp'), // Title
+		'display_alignment_callback', // Callback
+		'weclapp-settings', // Page
+		'display_section' // Section
+	);
+
+	add_settings_field(
+		'contact_placement', // ID
+		__('Neue Benutzer anlegen als','weclapp'), // Title
+		'contact_placement_callback', // Callback
+		'weclapp-settings', // Page
+		'campaign_section' // Section
+	);
+
 	add_settings_field(
 		'api_token', // ID
-		__('API Token *','weclapp'), // Title 
+		__('API Token *','weclapp'), // Title
 		'api_token_callback', // Callback
 		'weclapp-settings', // Page
-		'general_section' // Section           
-	);     
+		'general_section' // Section
+	);
 
 	add_settings_field(
 		'domain_name', // ID
-		__('Domain Name *','weclapp'), // Title 
+		__('Domain Name *','weclapp'), // Title
 		'domain_name_callback' , // Callback
 		'weclapp-settings', // Page
-		'general_section' // Section           
-	);      
-	add_settings_field(
-		'contact_placement', // ID
-		__('Neue Benutzer anlegen als','weclapp'), // Title 
-		'contact_placement_callback', // Callback
-		'weclapp-settings', // Page
-		'campaign_section' // Section           
-	);  
+		'general_section' // Section
+	);
+
 	add_settings_field(
 		'success_message', // ID
-		__('Benutzerdefinierte Erfolgsmeldung','weclapp'), // Title 
+		__('Benutzerdefinierte Erfolgsmeldung','weclapp'), // Title
 		'success_message_callback', // Callback
 		'weclapp-settings', // Page
-		'campaign_section' // Section           
-	); 
+		'campaign_section' // Section
+	);
 	add_settings_field(
 		'nowebinars_message', // ID
-		__('Benutzerdefinierte Mitteilung, falls keine Kampagne ansteht (%s ist der Platzhalter für den Kampagnentyp)','weclapp'), // Title 
+		__('Benutzerdefinierte Mitteilung, falls keine Kampagne ansteht (%s ist der Platzhalter für den Kampagnentyp)','weclapp'), // Title
 		'nowebinars_callback', // Callback
 		'weclapp-settings', // Page
-		'campaign_section' // Section           
-	);  
+		'campaign_section' // Section
+	);
 
 }
 /**
-*sanitize settings 
+*sanitize settings
 **/
 function sanitize_input( $input ) {
 	$input = strip_tags( stripslashes( $input ) );
@@ -178,7 +203,11 @@ function print_campaign_section_info()
 {
 }
 
-/** 
+function print_display_section_info()
+{
+}
+
+/**
 *callback functions for options
 */
 function api_token_callback()
@@ -201,30 +230,37 @@ function nowebinars_callback()
 	$setting = esc_attr( get_option( 'nowebinars' ) );
 	echo "<textarea name='nowebinars' rows='5' cols ='100'>$setting</textarea>";
 }
+function display_alignment_callback()
+{
+	echo '<fieldset>
+			<input type="radio" id="vertical" name="display_alignment" value="vertical" ' . ( ( 'contact' == weclapp_get_option( 'display_alignment' )) ? 'checked' : '' ). '><label for="contact">' . __( "Vertikal", "weclapp" ) . '</label><br>
+			<input type="radio" id="horizontal" name="display_alignment" value="horizontal" ' . ( ( 'lead' == weclapp_get_option( 'display_alignment' )) ? 'checked' : ''). '><label for="lead">'  . __( "Horizontal", "weclapp" ) . '</label><br>
+		</fieldset>';
+}
 function contact_placement_callback()
 {
 	echo '<fieldset>
-			<input type="radio" id="contact" name="contact_placement" value="contact" ' . ( ( 'contact' == weclapp_get_option( 'contact_placement' )) ? 'checked' : '' ). '><label for="contact">' . __( "Kontakt", "weclapp" ) . '</label><br> 
-			<input type="radio" id="lead" name="contact_placement" value="lead" ' . ( ( 'lead' == weclapp_get_option( 'contact_placement' )) ? 'checked' : ''). '><label for="lead">'  . __( "Interessent", "weclapp" ) . '</label><br> 
-			<input type="radio" id="customer" name="contact_placement" value="customer" ' . ( ( 'customer' == weclapp_get_option( 'contact_placement' )) ? 'checked' : '' ). '><label for="customer">'  . __( "Kunde", "weclapp" ) . '</label> 
+			<input type="radio" id="contact" name="contact_placement" value="contact" ' . ( ( 'contact' == weclapp_get_option( 'contact_placement' )) ? 'checked' : '' ). '><label for="contact">' . __( "Kontakt", "weclapp" ) . '</label><br>
+			<input type="radio" id="lead" name="contact_placement" value="lead" ' . ( ( 'lead' == weclapp_get_option( 'contact_placement' )) ? 'checked' : ''). '><label for="lead">'  . __( "Interessent", "weclapp" ) . '</label><br>
+			<input type="radio" id="customer" name="contact_placement" value="customer" ' . ( ( 'customer' == weclapp_get_option( 'contact_placement' )) ? 'checked' : '' ). '><label for="customer">'  . __( "Kunde", "weclapp" ) . '</label>
 		</fieldset>';
-} 
+}
 
-/** 
+/**
 * add settings link on plugin page
 **/
-function weclapp_settings_link( $links ) { 
-  $settings_link = '<a href="options-general.php?page=weclapp-settings">Settings</a>'; 
-  array_unshift($links, $settings_link); 
-  return $links; 
+function weclapp_settings_link( $links ) {
+  $settings_link = '<a href="options-general.php?page=weclapp-settings">Settings</a>';
+  array_unshift($links, $settings_link);
+  return $links;
 }
-$plugin = plugin_basename( __FILE__ ); 
+$plugin = plugin_basename( __FILE__ );
 add_filter( "plugin_action_links_$plugin", 'weclapp_settings_link' );
 
 /*
 **used to reduce the number of displayed webinars to the number of upcoming webinars with one hour postponement
 */
-function weclapp_display_campaign_til() 
+function weclapp_display_campaign_til()
 {
 	$currentTime = ( time() * 1000 );
 	//offset in milliseconds
@@ -236,7 +272,7 @@ function weclapp_display_campaign_til()
 /**
 *api call to display upcoming webinars as well as a formular
 **/
-function weclapp_display_campaign_formular( $atts ) 
+function weclapp_display_campaign_formular( $atts )
 {
 	//extract shortcode parameters and set default values
 	extract( shortcode_atts( array(
@@ -293,7 +329,7 @@ function weclapp_display_campaign_formular( $atts )
 			'Authorization' => 'Basic ' . base64_encode( "*" . ':' . weclapp_get_option("api_token") )
 		)
 	);
-	//get all upcoming webinars 
+	//get all upcoming webinars
 	$result = wp_remote_retrieve_body( wp_remote_get( 'https://'.weclapp_get_option("domain_name").'.weclapp.com/webapp/api/v1/campaign/?campaignType-eq=' . $uCampaignType . '&campaignStartDate-gt=' . weclapp_display_campaign_til(), $args ));
 	$result = json_decode( $result, true );
 	$result = $result['result'];
@@ -304,46 +340,68 @@ function weclapp_display_campaign_formular( $atts )
 	} else {
 		$content = '<div class="webinar-container">';
 		//display a webinar box for each upcoming webinar
-		foreach ( $result as &$val ) {
-			$content .= '<div class=webinar-box>';
-				$content .= '<div class="webinar-head" >';
+		$alignment = weclapp_get_option( 'display_alignment' );
+		if( $alignment == 'vertical' ) {
+			foreach ( $result as &$val ) {
+				$content .= '<div class=webinar-box>';
+					$content .= '<div class="webinar-head" >';
 
-					$content .= '<div class="webinar-checkbox"'. ( ( true == $displayformular) ? '' : 'style="display: none"' ) . '><input type="hidden" name="checkbox_' . $type . '" data-weclapp-campaign-id="' . $val['id'] . '" /></div>';
-				
-					$content .= '<div class="webinar-headline">';
-						$content .= '<h3 style="margin: 0px !important;padding: 0px !important;">' . $val['campaignName'] . '</h3>';
-						$duration = ( $val['campaignEndDate']/1000 - $val['campaignStartDate']/1000 ) / 60;
-						$content .= '<p>' . sprintf(__( 'Dauer ca. %1$s Min. | Nächster Termin: %2$s Uhr', 'weclapp' ), $duration, date("d. m. Y, H.i", $val['campaignStartDate']/1000)) . '</p>';
+						$content .= '<div class="webinar-checkbox"'. ( ( true == $displayformular) ? '' : 'style="display: none"' ) . '><input type="hidden" name="checkbox_' . $type . '" data-weclapp-campaign-id="' . $val['id'] . '" /></div>';
+
+						$content .= '<div class="webinar-headline">';
+							$content .= '<h3 style="margin: 0px !important;padding: 0px !important;">' . $val['campaignName'] . '</h3>';
+							$duration = ( $val['campaignEndDate']/1000 - $val['campaignStartDate']/1000 ) / 60;
+							$content .= '<p>' . sprintf(__( 'Dauer ca. %1$s Min. | Nächster Termin: %2$s Uhr', 'weclapp' ), $duration, date("d. m. Y, H.i", $val['campaignStartDate']/1000)) . '</p>';
+						$content .= '</div>';
+
+						$content .= '<div class="webinar-arrow"></div>';
+
 					$content .= '</div>';
-
-					$content .= '<div class="webinar-arrow"></div>';
-
+					$content .= '<div class="webinar-content"><h3>' . __("Inhalt",  "weclapp") . '</h3>'.$val['description'].'</div>';
 				$content .= '</div>';
-				$content .= '<div class="webinar-content"><h3>' . __("Inhalt",  "weclapp") . '</h3>'.$val['description'].'</div>';
+			}
 			$content .= '</div>';
 		}
-		$content .= '</div>';
+		else {
+			foreach ( $result as &$val ) {
+				$content .= '<div class=webinar-box-horizontal>';
+					$content .= '<div class="webinar-head-horizontal" >';
+						$content .= '<h2 style="margin: 0px !important;padding: 0px !important;">' . $val['campaignName'] . '</h2>';
+						$duration = ( $val['campaignEndDate']/1000 - $val['campaignStartDate']/1000 ) / 60;
+						$content .= '<h3>' . sprintf(__( 'Dauer ca. %1$s Min. | Nächster Termin: %2$s Uhr', 'weclapp' ), $duration, date("d. m. Y, H.i", $val['campaignStartDate']/1000)) . '</h3>';
+					$content .= '</div>';
+					$content .= '<div class="webinar-content-horizontal"><p>' . __("Inhalt",  "weclapp") . '</p>'.$val['description'].'</div>';
+					$content .= '<div class="webinar-checkbox" style="float: none !important;"'. ( ( true == $displayformular) ? '' : 'style="display: none"' ) . '><input type="hidden" name="checkbox_' . $type . '" data-weclapp-campaign-id="' . $val['id'] . '" /></div>';
+
+				$content .= '</div>';
+			}
+			$content .= '</div>';
+		}
+		$content .= '<div class="clearfix"></div>';
 		//input formular, submit buttons calls registerUser in weclapp.js (AJAX-call)
 		if ( true == $displayformular) {
+			$content .= '<div class="weclapp-campain-form-panel">';
 			$content .= '
 				<div id="name-group_"' . $type . '" class="form-group">
-					<label for="weclapp-name">' . __("Name", "weclapp") . '</label> 
+					<label for="weclapp-name">' . __("Name", "weclapp") . '</label>
 					<input id="weclapp-name" name="wc_name_' . $type . '" type="text" class="form-control" />
 				</div>
 				<div id="email-group_"' . $type . '" class="form-group">
-					<label for="weclapp-email"> E-Mail </label> 
+					<label for="weclapp-email"> E-Mail </label>
 					<input id="weclapp-email" name="wc_email_' . $type . '" type="text" class="form-control" />
 				</div>
 				<div id="phone-group_"' . $type . '" class="form-group">
-					<label for="weclapp-phone">' . __("Telefonnummer", "weclapp") . '</label> 
+					<label for="weclapp-phone">' . __("Telefonnummer", "weclapp") . '</label>
 					<input id="weclapp-phone" name="wc_phone_' . $type . '" type="text" class="form-control" />
 				</div>
-				<input type="submit" name="submit" id="submitbutton" value="'. __("Anmelden","weclapp") . '" onclick="registerCampaignUser(\'' . $type . '\')" />';
+				<input type="submit" class="weclapp-campaign-submit-button" name="submit" id="weclapp-icampaing-submit-button" value="'. __("Anmelden","weclapp") . '" onclick="registerCampaignUser(\'' . $type . '\')" />';
+			$content .='</div>';
 			$content .='<div style="padding-top: 20px;padding-bottom: 20px;">';
 			$content .='<div id="loader_' . $type . '" style="display: none;"> <img src="' . plugin_dir_url(  __FILE__  ) . 'assets/icons/ajax-loader.gif"> </div>';
 			$content .='<div id="errorbox_' . $type . '" class="weclapp-error-message" style="display: none;"><span></span></div>';
 			$content .='<div id="successbox_' . $type . '" class="weclapp-success-message" style="display: none;"><span></span></div>';
-		}	
+		$content .= '<div class="clearfix" />';
+		}
 	}
 	return $content;
 }
@@ -367,25 +425,25 @@ function weclapp_display_ticket_formular( $atts )
 	//display name and email fields
 	$ticketing_content = '
 		<div id="ticket_name_group" class="form-group">
-			<label for="wc_ticket_name">' . __("*Name", "weclapp") . '</label> 
+			<label for="wc_ticket_name">' . __("*Name", "weclapp") . '</label>
 			<input id="wc_ticket_name" name="wc_ticket_name" type="text" class="form-control" />
 		</div>
 		<div id="ticket_email_group" class="form-group">
-			<label for="wc_ticket_email"> *E-Mail </label> 
+			<label for="wc_ticket_email"> *E-Mail </label>
 			<input id="wc_ticket_email" name="wc_ticket_email" type="text" class="form-control" />
 		</div>';
 	//if requested, display additional recipients, phone number and category fields
 	if( true == $additional_recipients) {
-		$ticketing_content .= '	
+		$ticketing_content .= '
 			<div id="ticket_additional_email_group" class="form-group">
-				<label for="wc_ticket_additional_email">' . __("Weitere Empfänger", "weclapp") . '</label> 
+				<label for="wc_ticket_additional_email">' . __("Weitere Empfänger", "weclapp") . '</label>
 				<input id="wc_ticket_additional_email" name="wc_ticket_additional_email" type="text" class="form-control" />
 			</div>';
 	}
 	if( true == $phone_number ) {
 		$ticketing_content .= '
 			<div id="ticket_phone_group" class="form-group">
-				<label for="wc_ticket_phone">' . __("Telefonnummer", "weclapp") . '</label> 
+				<label for="wc_ticket_phone">' . __("Telefonnummer", "weclapp") . '</label>
 				<input id="wc_ticket_phone" name="wc_ticket_phone" type="text"  class="form-control" />
 			</div>';
 	}
@@ -396,15 +454,15 @@ function weclapp_display_ticket_formular( $atts )
 		$ticketCategory = $ticketCategory['result'];
 		$ticketing_content .= '
 			<div id="ticket_category_group" class="form-group">
-				<label for="wc_ticket_category">' . __("Kategorie", "weclapp") . '</label> 
+				<label for="wc_ticket_category">' . __("Kategorie", "weclapp") . '</label>
 				<select id="wc_ticket_category" name="wc_ticket_priority" type="text" value="Test" class="form-control">
 					<option value="">'. __("Bitte auswählen", "weclapp") . '</option>';
 		foreach ( $ticketCategory as &$val ) {
 			$ticketing_content .= '
 					<option value=' . $val['id']  . '>' . $val['name'] .'</option>';
 		}
-		$ticketing_content .= '	
-				</select> 			
+		$ticketing_content .= '
+				</select>
 			</div>';
 		//$ticketing_content .= $result . 'sadadasd';
 		//error_log($result, 0);
@@ -415,22 +473,22 @@ function weclapp_display_ticket_formular( $atts )
 	$ticketPriority = $ticketPriority['result'];
 	$ticketing_content .= '
 		<div id="ticket_priority_group" class="form-group">
-			<label for="wc_ticket_priority">' . __("*Priorität", "weclapp") . '</label> 
+			<label for="wc_ticket_priority">' . __("*Priorität", "weclapp") . '</label>
 			<select id="wc_ticket_priority" name="wc_ticket_priority" type="text" class="form-control">';
 	foreach ( $ticketPriority as &$val ) {
 		$ticketing_content .= '
 				<option value=' . $val['id']  . '>' . $val['name'] .'</option>';
 	}
 	//display subject and description field submitbutton calls sendTicket in weclapp.js (AJAX call)
-	$ticketing_content .= '	
-			</select> 			
+	$ticketing_content .= '
+			</select>
 		</div>
 		<div id="ticket_subject_group" class="form-group">
-			<label for="wc_ticket_subject">' . __("*Betreff", "weclapp") . '</label> 
+			<label for="wc_ticket_subject">' . __("*Betreff", "weclapp") . '</label>
 			<input id="wc_ticket_subject" name="wc_ticket_subject" type="text" class="form-control" />
 		</div>
 		<div id="ticket_description_group" class="form-group">
-			<label for="wc_ticket_description">' . __("Beschreibung", "weclapp") . '</label> 
+			<label for="wc_ticket_description">' . __("Beschreibung", "weclapp") . '</label>
 			<textarea id="wc_ticket_description" rows="10" cols ="40" name="wc_ticket_description" class="form-control" /></textarea>
 		</div>
 		<input type="submit" name="submit" id="submitbutton" value="'. __("Senden","weclapp") . '" onclick="sendTicket( )" />';
@@ -440,9 +498,9 @@ function weclapp_display_ticket_formular( $atts )
 	$ticketing_content .='<div id="ticket_successbox" class="weclapp-success-message" style="display: none;"><span></span></div>';
 	return $ticketing_content;
 }
-	
 
-function weclapp_register_shortcodes() 
+
+function weclapp_register_shortcodes()
 {
     add_shortcode( 'weclappCampaigns', 'weclapp_display_campaign_formular' );
 	add_shortcode( 'weclappTicketing', 'weclapp_display_ticket_formular' );
@@ -477,7 +535,7 @@ function weclapp_get_option( $name )
 		$optionValue = null;
 		switch ( $name )
 		{
-			case "api_token": 
+			case "api_token":
 				$optionValue = "12346789";
 				update_option( "api_token", $optionValue );
 				break;
@@ -493,10 +551,14 @@ function weclapp_get_option( $name )
 				$optionValue = "contact";
 				update_option( "contact_placement", $optionValue );
 				break;
+			case "display_alignment":
+				$optionValue = "vertical";
+				update_option( "display_alignment", $optionValue );
+				break;
 			case "nowebinars":
 				$optionValue = __("In der nächsten Zeit sind noch keine Kampagnen vom Typ %s angesetzt. Schauen Sie später nochmal vorbei", "weclapp");
 				update_option( "nowebinars", $optionValue );
-		}		
+		}
 	}
 	return $optionValue;
 }

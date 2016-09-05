@@ -1,3 +1,12 @@
+.weclapp-campain-form-panel {
+	width: 50%;
+}
+
+.weclapp-campaign-submit-button {
+	padding: 10px;
+	float: right;
+}
+
 .weclapp-success-message {
 	border: 1px solid #82BB25;
 	color: #82BB25;
@@ -11,16 +20,41 @@
 	text-align: center;
 }
 .webinar-container {
+	  float: left;
+	  width: 100%;
 }
 
+.clearfix::after {
+	clear: both;
+	content: "";
+	display:table;
+}
 .webinar-box {
   position: relative;
   background: #f5f5f5;
   margin-bottom: 8px;
 }
 
+.webinar-box-horizontal {
+  float: left;
+  text-align: center;
+  width: 30%;
+  position: relative;
+  margin: 8px;
+  min-height: 230px;
+  border: 1px solid #a0a0a0;
+}
+
 .webinar-head {
   background: #f5f5f5;
+  cursor: pointer;
+  transition: 0.7s all ease-in-out;
+  padding: 8px;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.webinar-head-horizontal {
   cursor: pointer;
   transition: 0.7s all ease-in-out;
   padding: 8px;
@@ -52,6 +86,7 @@
   background: url(../assets/icons/new_select_inactive_normal.png) right top no-repeat;
   float: left;
 }
+
 .webinar-checkbox:hover {
   background: url(../assets/icons/new_select_inactive_hover.png) right top no-repeat;
 }
@@ -139,4 +174,12 @@
 
 .form-group{
 	margin-bottom:15px
+}
+
+.form-group label {
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:15px;
+    min-width: 110px;
 }
