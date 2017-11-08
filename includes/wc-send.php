@@ -4,10 +4,10 @@
 	**/
 	function weclapp_send_ticket( )
 	{
-		//array for errors, success state and success message 
+		//array for errors, success state and success message
 		$data = array(
 			'message' => '',
-			'error' => array( 
+			'error' => array(
 				'ticket' => '',
 				)
 		);
@@ -29,7 +29,7 @@
 			if ( !is_email( $email )) {
 				$data['errors']['ticket']['email'] = __( "Bitte geben Sie eine gültige Email-Adresse ein", "weclapp" ) . "<br />";
 			}
-		} 
+		}
 		//phone number only needs validation if not empty otherwise it must have the value ''
 		if( !empty( $phone ) && !ctype_digit( $phone )) {
 			$data['errors']['ticket']['phone'] = __( "Bitte geben Sie eine gültige Telefonnummer ein", "weclapp" ) . "<br />";
@@ -39,7 +39,7 @@
 		$subject = weclapp_clean_input( $_POST["ticket_subject"] );
 		if ( empty( $subject )) {
 			$data['errors']['ticket']['subject'] = __( "Bitte geben Sie einen Betreff an", "weclapp" ) . "<br />";
-		} 
+		}
 		//description does not need validation
 		$description = weclapp_clean_input( $_POST["ticket_description"] );
 		//if category is disabled, set category to ''
@@ -48,7 +48,7 @@
 		} else {
 			$category = '';
 		}
-		//priority does not need validation 
+		//priority does not need validation
 		$priority = weclapp_clean_input( $_POST["ticket_priority"] );
 		if( empty( $data['errors']['ticket'] )) {
 			//if no errors occurred, create the ticket
@@ -64,12 +64,12 @@
 	function sendTicket( $name, $email, $phone, $subject, $description, $category, $priority, &$data )
 	{
 		$api_header = array(
-			'Content-type'  => 'application/json', 
+			'Content-type'  => 'application/json',
 			'Authorization' => 'Basic ' . base64_encode( '*' . ':' . weclapp_get_option( "api_token" ) )
 		);
-		$arg = array ( 
-				'body'    => json_encode( array( 
-					'description' => $description, 
+		$arg = array (
+				'body'    => json_encode( array(
+					'description' => $description,
 					'subject'    => $subject,
 					'ticketCategoryId' => $category,
 					'ticketPriorityId' => $priority,
@@ -81,8 +81,9 @@
 		$data['response'] = $response;
 		if ( empty( $data['errors']['ticket'] )) {
 			$data['success'] = true;
-			//success message 
-			$data['message'] .= __("Ihre Anfrage wurde erfolgreich gesendet.", "weclapp") ."<br />";
+			//success message
+			$success_message = weclapp_get_option( "success_message2" );
+			$data['message'] .= $success_message ."<br />";
 		} else {
 			// success state notifies AJAX-call of errors to be displayed
 			$data['success'] = false;
@@ -90,13 +91,13 @@
 	}
 	function weclapp_campaign_register( )
 	{
-		//array for errors, success state and success message 
+		//array for errors, success state and success message
 		$data = array(
 			'message' => '',
 		);
 		//default header for api-calls
 		$api_header = array(
-			'Content-type'  => 'application/json', 
+			'Content-type'  => 'application/json',
 			'Authorization' => 'Basic ' . base64_encode( '*' . ':' . weclapp_get_option( "api_token" ) )
 		);
 		//check all fields passed by AJAX-call
@@ -111,6 +112,7 @@
 		//call function weclapp_clean_input for cleaning the passed input
 		$email = weclapp_clean_input( $_POST["email"] );
 		if ( empty( $email )) {
+			error_log("Email leer", 0);
 			$data['errors']['email'] = __( "Bitte geben Sie Ihre Email-Adresse ein", "weclapp" ) . "<br />";
 		} else {
 			if ( !is_email( $email )) {
@@ -159,11 +161,11 @@
 			if($partyId == null)
 			{
 				$partyId = weclapp_create_contact( $name, $email, $phone, $api_header, $data );
-			}		
-			//call the api for actual campaign registration 
-			$arg = array ( 
-				'body'    => json_encode( array( 
-					'campaignId' => $campaignId, 
+			}
+			//call the api for actual campaign registration
+			$arg = array (
+				'body'    => json_encode( array(
+					'campaignId' => $campaignId,
 					'partyId'    => $partyId )),
 				'headers' => $api_header,
 			);
@@ -175,14 +177,14 @@
 				$data['message'] .= $success_message ."<br />";
 			} else {
 				// success state notifies AJAX-call of errors to be displayed
-				$data['success'] = false;	
+				$data['success'] = false;
 			}
 		}
 	}
 	/**
 	*sanitize input with different methods
 	**/
-	function weclapp_clean_input( $input ) 
+	function weclapp_clean_input( $input )
 	{
 		$input = trim( $input );
 		$input = stripslashes( $input );
@@ -202,7 +204,7 @@
 		$result = wp_remote_get( "https://" . weclapp_get_option( "domain_name" ) . ".weclapp.com/webapp/api/v1/campaignParticipant?campaignId-eq=" . $campaign . "&party.email-ieq=" . $email, $args );
 		//call function to check for errors
 		$result = weclapp_api_check( $result, $data );
-		//if user already participates, return campaign name 
+		//if user already participates, return campaign name
 		if (isset($result) && isset($result['result']) && isset($result['result'][0])) {
 			$result2 = wp_remote_get( "https://" . weclapp_get_option( "domain_name" ) . ".weclapp.com/webapp/api/v1/campaign/?campaignNumber-eq=" . $result['result']['0']['campaignNumber'], $args );
 			$result2 = weclapp_api_check( $result2, $data);
@@ -231,7 +233,7 @@
 			$result = wp_remote_get("https://".weclapp_get_option("domain_name").".weclapp.com/webapp/api/v1/lead?email-eq=".$email, $args);
 			$result = weclapp_api_check( $result, $data );
 		}
-		//return null, if the email is neither contact, nor lead or customer 
+		//return null, if the email is neither contact, nor lead or customer
 		if ( !isset( $result['result']['0'] ) ) {
 			return null;
 		}
@@ -239,19 +241,19 @@
 		else {
 			$partyId = $result['result']['0']['id'];
 			return $partyId;
-		}		
+		}
 	}
 	function weclapp_create_contact( $name, $email, $phone, $api_header, &$data )
 	{
 		//divide name into first name and surname
 		$name = preg_split( '/ (?!.* )/', $name );
-		$params = array( 
+		$params = array(
 			'body'     => json_encode( array(
-				"lastName"  => $name[1], 
-				"firstName" => $name[0], 
-				"email"     => $email, 
-				"partyType" => "PERSON", 
-				"company"   => "foo", 
+				"lastName"  => $name[1],
+				"firstName" => $name[0],
+				"email"     => $email,
+				"partyType" => "PERSON",
+				"company"   => "foo",
 				"phone"     => $phone,
 				)),
 			'headers'  => $api_header,
@@ -260,7 +262,7 @@
 		$result = wp_remote_post( "https://" . weclapp_get_option( "domain_name" ) . ".weclapp.com/webapp/api/v1/" . weclapp_get_option("contact_placement"), $params );
 		$result = weclapp_api_check( $result, $data );
 		$partyId = $result['id'];
-		return $partyId;		
+		return $partyId;
 	}
 	/**
 	*check api response for server-side errors or Wordpress HTTP errors

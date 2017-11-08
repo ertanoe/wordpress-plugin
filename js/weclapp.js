@@ -2,7 +2,7 @@ function registerCampaignUser( campaignType ) {
 
 	//create an array for all selected campaigns
 	campaignIds = [];
-	//fill that array 
+	//fill that array
 	jQuery( 'input[name=checkbox_' + campaignType + '][value=1]' ).each( function( index, elem ){
 		campaignIds.push( jQuery( elem ).data( 'weclapp-campaign-id' ));
 	} );
@@ -23,9 +23,9 @@ function registerCampaignUser( campaignType ) {
 	//show loader animation
 	jQuery('#loader_' + campaignType).show();
 	jQuery.ajax( {
-		method        : 'POST', 
+		method        : 'POST',
 		url         : frontendajax.ajaxurl,
-		data        : formData, 
+		data        : formData,
 		processData : true,
 		success: function( data ) {
 		data = JSON.parse( data );
@@ -37,29 +37,29 @@ function registerCampaignUser( campaignType ) {
 				// display errors for name
 				if ( data.errors.name ) {
 					jQuery( '#name-group_'  + campaignType ).addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.name ); // add the error message 
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.name ); // add the error message
 				}
-				// display errors for email 
+				// display errors for email
 				if (  data.errors.email ) {
 					jQuery( '#email-group_'  + campaignType ).addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.email ); // add the error message 
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.email ); // add the error message
 				}
-				// display errors for phone 
+				// display errors for phone
 				if ( data.errors.phone ) {
 					jQuery( '#phone-group_'  + campaignType ).addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.phone ); // add the error message 
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.phone ); // add the error message
 				}
 				// display errors for campaign
 				if ( data.errors.campaignIds ) {
-					jQuery( '#errorbox_'  + campaignType + ' span' ).append( data.errors.campaignIds ); // add the error message 
+					jQuery( '#errorbox_'  + campaignType + ' span' ).append( data.errors.campaignIds ); // add the error message
 				}
 				// display wordpress errors
 				if ( data.errors.wp_remote_request ) {
-					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.wp_remote_request ); // add the error message 
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.wp_remote_request ); // add the error message
 				}
 				// display weclapp errors
-				if ( data.errors.weclappApi ) {
-					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.weclappApi ); // add the error message 
+				if ( data.errors.gi ) {
+					jQuery( '#errorbox_'  + campaignType  + ' span' ).append( data.errors.weclappApi ); // add the error message
 				}
 			} else {
 				//show success message
@@ -93,9 +93,9 @@ function sendTicket( ) {
 	//show loader animation
 	jQuery('#ticket_loader').show();
 	jQuery.ajax( {
-		method        : 'POST', 
+		method        : 'POST',
 		url         : frontendajax.ajaxurl,
-		data        : formData, 
+		data        : formData,
 		processData : true,
 		success: function( data ) {
 		data = JSON.parse( data );
@@ -107,35 +107,35 @@ function sendTicket( ) {
 				// display errors for name
 				if ( data.errors.ticket.name ) {
 					jQuery( '#ticket_name_group' ).addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#ticket_errorbox' + ' span' ).append( data.errors.ticket.name ); // add the error message 
+					jQuery( '#ticket_errorbox' + ' span' ).append( data.errors.ticket.name ); // add the error message
 				}
 				// display errors for email
 				if (  data.errors.ticket.email ) {
 					jQuery( '#ticket_email_group').addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#ticket_errorbox span' ).append( data.errors.ticket.email ); // add the error message 
+					jQuery( '#ticket_errorbox span' ).append( data.errors.ticket.email ); // add the error message
 				}
-				// display errors for phone 
+				// display errors for phone
 				if ( data.errors.ticket.phone ) {
 					jQuery( '#ticket_phone_group').addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#ticket_errorbox span' ).append( data.errors.ticket.phone ); // add the error message 
+					jQuery( '#ticket_errorbox span' ).append( data.errors.ticket.phone ); // add the error message
 				}
 				// display errors for subject
 				if ( data.errors.ticket.subject ) {
 					jQuery( '#ticket_subject_group').addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#ticket_errorbox span' ).append( data.errors.ticket.subject ); // add the error message 
+					jQuery( '#ticket_errorbox span' ).append( data.errors.ticket.subject ); // add the error message
 				}
 				// display errors for description
 				if ( data.errors.ticket.description ) {
 					jQuery( '#ticket_description_group').addClass( 'has-error' ); // add the error class to show red input
-					jQuery( '#ticket_errorbox span' ).append( data.errors.ticket.description ); // add the error message 
+					jQuery( '#ticket_errorbox span' ).append( data.errors.ticket.description ); // add the error message
 				}
 				// display wordpress errors
 				if ( data.errors.wp_remote_request ) {
-					jQuery( '#ticket_errorbox span' ).append( data.errors.wp_remote_request ); // add the error message 
+					jQuery( '#ticket_errorbox span' ).append( data.errors.wp_remote_request ); // add the error message
 				}
 				// display weclapp errors
 				if ( data.errors.weclappApi ) {
-					jQuery( '#ticket_errorbox span' ).append( data.errors.weclappApi ); // add the error message 
+					jQuery( '#ticket_errorbox span' ).append( data.errors.weclappApi ); // add the error message
 				}
 			} else {
 				//show success message
@@ -145,13 +145,13 @@ function sendTicket( ) {
 		}
 	} ).fail( handleError );
 };
-	
+
 function handleError( error ){
 	jQuery('#loader').hide();
 	console.log( error );
 }
 
-jQuery( document ).ready( function(  ) {	
+jQuery( document ).ready( function(  ) {
 
 	//display campaign description on header-click
 	jQuery( ".webinar-container .webinar-head" ).on(  "click", function(  event  ) {
@@ -171,6 +171,4 @@ jQuery( document ).ready( function(  ) {
 			jQuery( this ).find( 'input[type="hidden"]' ).val( 0 );
 		}
 	} );
-} ); 
-
-
+} );
