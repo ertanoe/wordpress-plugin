@@ -47,6 +47,7 @@ function create_admin_page()
 	weclapp_get_option("nowebinars");
   weclapp_get_option("display_alignment");
   weclapp_get_option("success_message2");
+	weclapp_get_option("display_sort");
 
 			// This prints out all hidden setting fields
       if( isset( $_GET[ 'tab' ] ) ) {
@@ -116,22 +117,28 @@ function page_init()
 	);
 
 	register_setting(
-		'weclapp_options-2', // Option group
+		'weclapp_option-2', // Option group
 		'success_message', // Option name
 		'sanitize_input'  // Sanitize
 	);
 
 	register_setting(
-		'weclapp_options-2', // Option group
+		'weclapp_option-2', // Option group
 		'nowebinars', // Option name
 		'sanitize_input'  // Sanitize
 	);
 
   register_setting(
-    'weclapp_options-3', // Option group
+    'weclapp_option-3', // Option group
     'display_alignment', // Option name
     'sanitize_input'  // Sanitize
   );
+
+  register_setting(
+		'weclapp_option-3', // Option group
+		'display_sort', // Option name
+		'sanitize_input'  // Sanitize
+	);
 
   register_setting(
     'weclapp_option-4', // Option group
@@ -211,6 +218,13 @@ function page_init()
 		'display_section' // Section
   );
   add_settings_field(
+		'display_sort', // ID
+		__('Sortierung der Anzeige','weclapp'), // Title
+		'display_sort_callback', // Callback
+		'weclapp-settings-3', // Page
+		'display_section' // Section
+	);  
+  add_settings_field(
 		'success_message2', // ID
 		__('Benutzerdefinierte Erfolgsmeldung','weclapp'), // Title
 		'success_message2_callback', // Callback
@@ -289,6 +303,15 @@ function display_alignment_callback()
 	echo '<fieldset>
 			<input type="radio" id="vertical" name="display_alignment" value="vertical" ' . ( ( 'vertical' == weclapp_get_option( 'display_alignment' )) ? 'checked' : '' ). '><label for="vertical">' . __( "Vertikal", "weclapp" ) . '</label><br>
 			<input type="radio" id="horizontal" name="display_alignment" value="horizontal" ' . ( ( 'horizontal' == weclapp_get_option( 'display_alignment' )) ? 'checked' : ''). '><label for="horizontal">'  . __( "Horizontal", "weclapp" ) . '</label><br>
+		</fieldset>';
+}
+function display_sort_callback()
+{
+	echo '<fieldset>
+			<input type="radio" id="none" name="display_sort" value="none" ' . ( ( 'none' == weclapp_get_option( 'display_sort' )) ? 'checked' : '' ). '><label for="none">' . __( "Keine", "weclapp" ) . '</label><br>
+			<input type="radio" id="dateasc" name="display_sort" value="dateasc" ' . ( ( 'dateasc' == weclapp_get_option( 'display_sort' )) ? 'checked' : '' ). '><label for="dateasc">' . __( "Datum - aufsteigend", "weclapp" ) . '</label><br>
+			<input type="radio" id="datedesc" name="display_sort" value="datedesc" ' . ( ( 'datedesc' == weclapp_get_option( 'display_sort' )) ? 'checked' : ''). '><label for="datedesc">'  . __( "Datum - absteigend", "weclapp" ) . '</label><br>
+			<input type="radio" id="alpha" name="display_sort" value="alpha" ' . ( ( 'alpha' == weclapp_get_option( 'display_sort' )) ? 'checked' : ''). '><label for="alpha">'  . __( "Alphabetisch", "weclapp" ) . '</label><br>
 		</fieldset>';
 }
 function success_message2_callback()
@@ -385,6 +408,28 @@ function weclapp_display_campaign_formular( $atts )
 	$content = weclapp_display_campaign_til();
 	$result = json_decode( $result, true );
 	$result = $result['result'];
+  
+  // sort webinars if option is set
+  function sortNumeric( $a2, $a1 ) {
+    if ($a1["campaignStartDate"] == $a2["campaignStartDate"]) return 0;
+    
+    if (weclapp_get_option( "display_sort" ) == 'datedesc')    
+    return ($a1["campaignStartDate"] < $a2["campaignStartDate"]) ? -1 : 1;
+    else
+    return ($a1["campaignStartDate"] > $a2["campaignStartDate"]) ? -1 : 1;
+  }
+  
+  if (weclapp_get_option( "display_sort" ) != 'none' && weclapp_get_option( "display_sort" ) != 'alpha')
+  usort($result, "sortNumeric");
+
+
+  function sortAlpha($a1, $a2) {
+    return strcmp($a1['campaignName'], $a2['campaignName']);
+  }
+
+  if (weclapp_get_option( "display_sort" ) == 'alpha')
+  uasort($result, "sortAlpha");
+
 	//if there are no upcoming webinars, display a custom webinar message or the default one, respectively
 	if ( empty( $result )) {
 	    //placeholder for campaigntype in nowebinar-string
@@ -573,6 +618,10 @@ function weclapp_get_option( $name )
   			$optionValue = "vertical";
   			update_option( "display_alignment", $optionValue );
         break;
+			case "display_sort":
+				$optionValue = "dateasc";
+				update_option( "display_sort", $optionValue );
+				break;
       case "success_message2":
         $optionValue = __("Ticket wurde erfolgreich abgeschickt!","weclapp");
         update_option( "success_message2", $optionValue );
