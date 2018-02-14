@@ -100,5 +100,7 @@ For example, the following shortcode will display the submit formular including 
 
 1.2 Ticket Management added, shortcode parameters changed   
 
-1.4 Compatibility with wordpress 4.9.4 and Settings modified
+1.3 Compatibility with wordpress 4.7 and alignment of the list can be chosen between vertical and horizontal
+
+1.4 Compatibility with wordpress 4.9.4 and lists can be sorted by date or alphabetically
 

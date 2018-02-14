@@ -118,9 +118,9 @@ For an impression visit https://www.weclapp.com/de/webinare/
 
 1.2 Ticket Management added, shortcode parameters changed 
 
-1.3 Compatibility with wordpress 4.7
+1.3 Compatibility with wordpress 4.7 and alignment of the list can be chosen between vertical and horizontal
 
-1.4 Compatibility with wordpress 4.9.4 and Settings modified 
+1.4 Compatibility with wordpress 4.9.4 and lists can be sorted by date or alphabetically
 
 == Upgrade Notice ==
 
@@ -128,6 +128,6 @@ For an impression visit https://www.weclapp.com/de/webinare/
 
 1.2 Update to this version to use Ticket Management 
 
-1.3 Compatibility with wordpress 4.7
+1.3 Compatibility with wordpress 4.7 and alignment of the list can be chosen between vertical and horizontal
 
-1.4 Compatibility with wordpress 4.9.4 and Settings modified 
+1.4 Compatibility with wordpress 4.9.4 and lists can be sorted by date or alphabetically
