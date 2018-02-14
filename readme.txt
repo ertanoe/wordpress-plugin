@@ -1,9 +1,9 @@
-=== weclapp ===
-Contributors: Lukas Kröger
+﻿=== weclapp ===
+Contributors: Lukas Kröger, Labeeb Malik
 Tags: webinar, weclapp, campaign, cloud, ERP, CRM, ticketing, helpdesk
 Requires at least: 4.0
-Tested up to: 4.6
-Stable tag: 1.3
+Tested up to: 4.9.4
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,14 +18,16 @@ Adds the possibility to display campaigns and allow automatic webinar registrati
 * a list of upcoming campaigns of a chosen type scheduled in your weclapp account under CRM -> campaigns
 * a display of a submit form enabling visitors of your website to participate in one or more campaigns with one single registration (this feature can be deactivated using the Shortcode parameter <code>displayformular=0</code>)
 
-If a user is not in your contact, lead, or customer list in weclapp then the participant will be added to your contacts (contact type can be set in the Plugin Settings under "Create new persons as").
+If a user is not in your contact, lead, or customer list in weclapp then then the participant will be added to your contacts (contact type can be set in the Plugin Settings under "Create new persons as").
 
-Participants trying to register repeatedly will be informed about their already existing participation.
+Participants trying to register repeatedly will be informed about their already existing participation. 
 
-Additional features:
+Additional features: 
 
 * success messages can be configured under the plugin settings
-* multiple formulars or lists on one page
+* multiple formulars or lists on one page 
+* alignment of the list can be chosen between vertical and horizontal
+* lists can be sorted by date or alphabetically
 
 Here is a sample how the usage of the plugin looks like: https://www.weclapp.com/de/webinare/
 
@@ -50,9 +52,9 @@ If you encounter translation mistakes, feel free to inform us at the following e
 
 <h4> Campaign Management </h4>
 
-To use this feature, just place the Shortcode <code>[weclappCampaings]</code> into a chosen post.
+To use this feature, just place the Shortcode <code>[weclappCampaings]</code> into a chosen post. 
 
-By default webinar is the campaign type. If you like to use another campaign type, use the Shortcode parameter <code>type</code>. It is also possible to disable the formular using the Shortcode parameter <code>displayformular=0 </code>.
+By default webinar is the campaign type. If you like to use another campaign type, use the Shortcode parameter <code>type</code>. It is also possible to disable the formular using the Shortcode parameter <code>displayformular=0 </code>. 
 
 For instance, if you like to list all upcoming events without a formular:
 
@@ -62,7 +64,7 @@ Use the following names for the campaign types:
 
 * Event
 * Webinar
-* Exposition
+* Exposition 
 * Publicrelation
 * Advertisement
 * Bulkmail
@@ -74,7 +76,7 @@ Multiple formulars on one page (with different campaign types respectively) can 
 
 <h4> Ticket Management </h4>
 
-The only thing necessary is inserting the shortcode <code>[weclappTicketing]</code> into one of your posts.
+The only thing necessary is inserting the shortcode <code>[weclappTicketing]</code> into one of your posts. 
 Optionally, you can add the following fields to the formular using the shortcode parameters in brackets:
 
 * phone number (<code>phone_number=1</code>)
@@ -83,7 +85,7 @@ Optionally, you can add the following fields to the formular using the shortcode
 
 For example, the following shortcode will display the submit formular including a category select box:
 
-<code>[weclappTicketing category=1]</code>
+<code>[weclappTicketing category=1]</code>  
 
 If you encounter any errors messages, check your plugin settings as shown under "Installation".
 
@@ -114,10 +116,18 @@ For an impression visit https://www.weclapp.com/de/webinare/
 
 1.1 Shortcode parameters added and settings modified
 
-1.2 Ticket Management added, shortcode parameters changed
+1.2 Ticket Management added, shortcode parameters changed 
+
+1.3 Compatibility with wordpress 4.7
+
+1.4 Compatibility with wordpress 4.9.4 and Settings modified 
 
 == Upgrade Notice ==
 
 1.1 Update to this version to use all kinds of campaigns and more than one weclapp-Shortcodes on one page.
 
 1.2 Update to this version to use Ticket Management 
+
+1.3 Compatibility with wordpress 4.7
+
+1.4 Compatibility with wordpress 4.9.4 and Settings modified 

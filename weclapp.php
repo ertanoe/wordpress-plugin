@@ -2,7 +2,7 @@
 /*
 Plugin Name: weclapp
 Plugin URI: https://de.wordpress.org/plugins/weclapp/
-Version: 1.3
+Version: 1.4
 Author: <a href="http://www.weclapp.com"> weclapp GmbH </a>
 Text Domain: weclapp
 Domain Path: /languages

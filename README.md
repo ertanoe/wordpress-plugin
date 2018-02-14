@@ -19,6 +19,8 @@ Additional features:
 
 * success messages can be configured under the plugin settings
 * multiple formulars or lists on one page 
+* alignment of the list can be chosen between vertical and horizontal
+* lists can be sorted by date or alphabetically
 
 Here is a sample how the usage of the plugin looks like: https://www.weclapp.com/de/webinare/
 
@@ -96,10 +98,7 @@ For example, the following shortcode will display the submit formular including 
 
 1.1 Shortcode parameters added and settings modified
 
-1.2 Ticket Management added, shortcode parameters changed 
+1.2 Ticket Management added, shortcode parameters changed   
 
-
-
-
-  
+1.4 Compatibility with wordpress 4.9.4 and Settings modified
 
